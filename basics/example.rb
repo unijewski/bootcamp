@@ -135,4 +135,12 @@ class WebPage
   def most_controversial_articles
     load.sort_by { |article| article.votes }.reverse
   end
+
+  def votes
+    if load.empty?
+      0
+    else
+      load.map(&:votes).reduce(:+)
+    end
+  end
 end
