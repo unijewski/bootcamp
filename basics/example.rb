@@ -34,8 +34,10 @@ class Article
   end
 
   def truncate(limit)
-    if body.length > limit
-      body.slice!(0..limit - 4) + '...'
+    if body.length > limit && limit > 3
+      body.slice(0..limit - 4) + '...'
+    elsif limit <= 3
+      '...'
     else
       body
     end
@@ -51,6 +53,8 @@ class Article
 end
 
 class ArticlesFileSystem
+  attr_reader :directory
+
   def initialize(directory)
     @directory = directory
   end
@@ -59,9 +63,7 @@ class ArticlesFileSystem
     array_of_articles.each do |article|
       title = article.title.downcase.gsub(' ', '_') + '.article'
       path = self.directory + '/' + title
-      File.open(path, 'w') do |f|
-        f.write(article.author + '||' + article.likes.to_s + '||' + article.dislikes.to_s + '||' + article.body)
-      end
+      File.write(path, article.author + '||' + article.likes.to_s + '||' + article.dislikes.to_s + '||' + article.body)
     end
   end
 
