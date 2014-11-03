@@ -102,5 +102,9 @@ class WebPage
   def save
     articles_db.save(articles)
   end
+
+  def new_article(title, body, author)
+    @articles_temp << Article.new(title, body, author)
+  end
 end
 
