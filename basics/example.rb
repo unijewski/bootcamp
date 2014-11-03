@@ -94,5 +94,9 @@ class WebPage
   def articles
     @articles_temp
   end
+
+  def load
+    articles_db.load
+  end
 end
 
