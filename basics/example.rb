@@ -73,7 +73,10 @@ class ArticlesFileSystem
       title = file.slice(9..-9).capitalize.gsub('_', ' ')
       IO.readlines(file).each do |line|
         author, likes, dislikes, body = line.split('||')
-        array << Article.new(title, body, author)
+        article = Article.new(title, body, author)
+        article.likes = likes.to_i
+        article.dislikes = dislikes.to_i
+        array << article
       end
     end
     array
