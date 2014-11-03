@@ -110,5 +110,9 @@ class WebPage
   def longest_articles
     load.sort_by { |article| article.body.length }.reverse
   end
+
+  def best_articles
+    load.sort_by { |article| article.points }.reverse
+  end
 end
 
