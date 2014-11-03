@@ -85,6 +85,9 @@ class ArticlesFileSystem
 end
 
 class WebPage
+  class NoArticlesFound < StandardError
+  end
+
   def initialize(directory = '/')
     @directory = directory
     @articles_temp = []
@@ -118,5 +121,9 @@ class WebPage
   def worst_articles
     load.sort_by { |article| article.points }
   end
-end
 
+  def best_article
+    raise WebPage::NoArticlesFound if load.empty?
+    load.max_by { |article| article.points }
+  end
+end
