@@ -46,3 +46,11 @@ class Article
     end
   end
 end
+
+class ArticlesFileSystem
+  attr_accessor :directory
+
+  def initialize(directory)
+    @directory = directory
+  end
+end
