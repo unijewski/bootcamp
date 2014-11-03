@@ -87,6 +87,12 @@ end
 class WebPage
   def initialize(directory = '/')
     @directory = directory
+    @articles_temp = []
+    @articles_db = ArticlesFileSystem.new(@directory)
+  end
+
+  def articles
+    @articles_temp
   end
 end
 
