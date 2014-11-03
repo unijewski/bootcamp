@@ -24,4 +24,8 @@ class Article
   def votes
     @likes + @dislikes
   end
+
+  def long_lines
+    @body.lines if @body.length > 80
+  end
 end
