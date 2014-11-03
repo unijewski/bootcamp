@@ -28,4 +28,8 @@ class Article
   def long_lines
     @body.lines if @body.length > 80
   end
+
+  def length
+    @body.length
+  end
 end
