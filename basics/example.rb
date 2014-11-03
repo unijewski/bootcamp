@@ -131,4 +131,8 @@ class WebPage
     raise WebPage::NoArticlesFound if load.empty?
     load.min_by { |article| article.points }
   end
+
+  def most_controversial_articles
+    load.sort_by { |article| article.votes }.reverse
+  end
 end
