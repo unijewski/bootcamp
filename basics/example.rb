@@ -26,7 +26,7 @@ class Article
   end
 
   def long_lines
-    @body.lines if @body.length > 80
+    @body.lines.join(', ') if @body.length > 80
   end
 
   def length
@@ -34,10 +34,15 @@ class Article
   end
 
   def truncate(limit)
-    @body.slice!(0..limit) + '...' if @body.length > 80
+    @body.slice!(0..9) + '...'
+    @body
   end
 
-  def contain?(string)
-    @body.include? string
+  def contain?(word)
+    if word.is_a?(Regexp)
+      @body.match word
+    else
+      @body.include? word
+    end
   end
 end
