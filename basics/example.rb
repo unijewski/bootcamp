@@ -114,5 +114,9 @@ class WebPage
   def best_articles
     load.sort_by { |article| article.points }.reverse
   end
+
+  def worst_articles
+    load.sort_by { |article| article.points }
+  end
 end
 
