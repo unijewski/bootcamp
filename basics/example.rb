@@ -157,4 +157,8 @@ class WebPage
   def best_author
     authors_statistics.max_by { |key, value| value }.first
   end
+
+  def search(query)
+    load.select { |article| article if article.body.include? query }
+  end
 end
