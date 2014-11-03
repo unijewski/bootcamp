@@ -16,4 +16,8 @@ class Article
   def dislike!
     @dislikes += 1
   end
+
+  def points
+    @likes - @dislikes
+  end
 end
