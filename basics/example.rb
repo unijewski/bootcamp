@@ -98,5 +98,9 @@ class WebPage
   def load
     articles_db.load
   end
+
+  def save
+    articles_db.save(articles)
+  end
 end
 
