@@ -51,8 +51,6 @@ class Article
 end
 
 class ArticlesFileSystem
-  attr_accessor :directory
-
   def initialize(directory)
     @directory = directory
   end
@@ -60,10 +58,22 @@ class ArticlesFileSystem
   def save(array_of_articles)
     array_of_articles.each do |article|
       title = article.title.downcase.gsub(' ', '_') + '.article'
-      path = directory + '/' + title
+      path = self.directory + '/' + title
       File.open(path, 'w') do |f|
         f.write(article.author + '||' + article.likes.to_s + '||' + article.dislikes.to_s + '||' + article.body)
       end
     end
+  end
+
+  def load
+    array = []
+    Dir[self.directory + '/*.article'].each do |file|
+      title = file.slice(9..-9).capitalize.gsub('_', ' ')
+      IO.readlines(file).each do |line|
+        author, likes, dislikes, body = line.split('||')
+        array << Article.new(title, body, author)
+      end
+    end
+    array
   end
 end
