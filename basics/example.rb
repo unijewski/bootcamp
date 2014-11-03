@@ -153,4 +153,8 @@ class WebPage
     load.map(&:author).each { |elem| result[elem] += 1}
     result
   end
+
+  def best_author
+    authors_statistics.max_by { |key, value| value }.first
+  end
 end
