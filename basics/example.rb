@@ -26,7 +26,7 @@ class Article
   end
 
   def long_lines
-    @body.lines.sort_by { |line| line.length > 80 }
+    @body.lines.select { |line| line.length > 80 }
   end
 
   def length
