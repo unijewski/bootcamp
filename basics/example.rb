@@ -36,4 +36,8 @@ class Article
   def truncate(limit)
     @body.slice!(0..limit) + '...' if @body.length > 80
   end
+
+  def contain?(string)
+    @body.include? string
+  end
 end
