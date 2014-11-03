@@ -8,4 +8,8 @@ class Article
     @likes = 0
     @dislikes = 0
   end
+
+  def like!
+    @likes += 1
+  end
 end
