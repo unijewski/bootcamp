@@ -12,4 +12,8 @@ class Article
   def like!
     @likes += 1
   end
+
+  def dislike!
+    @dislikes += 1
+  end
 end
