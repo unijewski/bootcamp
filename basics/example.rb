@@ -26,7 +26,7 @@ class Article
   end
 
   def long_lines
-    @body.lines.join(', ') if @body.length > 80
+    @body.lines.sort_by { |line| line.length > 80 }
   end
 
   def length
@@ -34,7 +34,7 @@ class Article
   end
 
   def truncate(limit)
-    @body.slice!(0..9) + '...'
+    @body = @body.slice!(0..limit - 4) + '...' if @body.length > limit
     @body
   end
 
