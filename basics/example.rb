@@ -10,39 +10,42 @@ class Article
   end
 
   def like!
-    @likes += 1
+    self.likes += 1
   end
 
   def dislike!
-    @dislikes += 1
+    self.dislikes += 1
   end
 
   def points
-    @likes - @dislikes
+    likes - dislikes
   end
 
   def votes
-    @likes + @dislikes
+    likes + dislikes
   end
 
   def long_lines
-    @body.lines.select { |line| line.length > 80 }
+    body.lines.select { |line| line.length > 80 }
   end
 
   def length
-    @body.length
+    body.length
   end
 
   def truncate(limit)
-    @body = @body.slice!(0..limit - 4) + '...' if @body.length > limit
-    @body
+    if body.length > limit
+      body.slice!(0..limit - 4) + '...'
+    else
+      body
+    end
   end
 
   def contain?(word)
     if word.is_a?(Regexp)
-      @body.match word
+      body.match word
     else
-      @body.include? word
+      body.include? word
     end
   end
 end
