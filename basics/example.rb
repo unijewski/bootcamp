@@ -147,4 +147,10 @@ class WebPage
   def authors
     load.map(&:author).uniq
   end
+
+  def authors_statistics
+    result = Hash.new(0)
+    load.map(&:author).each { |elem| result[elem] += 1}
+    result
+  end
 end
