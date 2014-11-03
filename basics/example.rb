@@ -126,4 +126,9 @@ class WebPage
     raise WebPage::NoArticlesFound if load.empty?
     load.max_by { |article| article.points }
   end
+
+  def worst_article
+    raise WebPage::NoArticlesFound if load.empty?
+    load.min_by { |article| article.points }
+  end
 end
