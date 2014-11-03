@@ -56,4 +56,14 @@ class ArticlesFileSystem
   def initialize(directory)
     @directory = directory
   end
+
+  def save(array_of_articles)
+    array_of_articles.each do |article|
+      title = article.title.downcase.gsub(' ', '_') + '.article'
+      path = directory + '/' + title
+      File.open(path, 'w') do |f|
+        f.write(article.author + '||' + article.likes.to_s + '||' + article.dislikes.to_s + '||' + article.body)
+      end
+    end
+  end
 end
