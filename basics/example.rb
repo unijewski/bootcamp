@@ -143,4 +143,8 @@ class WebPage
       load.map(&:votes).reduce(:+)
     end
   end
+
+  def authors
+    load.map(&:author).uniq
+  end
 end
