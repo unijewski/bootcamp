@@ -83,3 +83,10 @@ class ArticlesFileSystem
     array
   end
 end
+
+class WebPage
+  def initialize(directory = '/')
+    @directory = directory
+  end
+end
+
