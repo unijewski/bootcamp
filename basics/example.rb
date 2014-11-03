@@ -32,4 +32,8 @@ class Article
   def length
     @body.length
   end
+
+  def truncate(limit)
+    @body.slice!(0..limit) + '...' if @body.length > 80
+  end
 end
