@@ -96,7 +96,7 @@ class WebPage
   end
 
   def load
-    articles_db.load
+    @articles_db.load
   end
 
   def save
@@ -105,6 +105,10 @@ class WebPage
 
   def new_article(title, body, author)
     @articles_temp << Article.new(title, body, author)
+  end
+
+  def longest_articles
+    load.sort_by { |article| article.body.length }.reverse
   end
 end
 
