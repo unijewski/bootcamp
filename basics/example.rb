@@ -20,4 +20,8 @@ class Article
   def points
     @likes - @dislikes
   end
+
+  def votes
+    @likes + @dislikes
+  end
 end
