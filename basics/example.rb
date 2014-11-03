@@ -63,7 +63,8 @@ class ArticlesFileSystem
     array_of_articles.each do |article|
       title = article.title.downcase.gsub(' ', '_') + '.article'
       path = self.directory + '/' + title
-      File.write(path, article.author + '||' + article.likes.to_s + '||' + article.dislikes.to_s + '||' + article.body)
+      content = [article.author, article.likes.to_s, article.dislikes.to_s, article.body].join('||')
+      File.write(path, content)
     end
   end
 
