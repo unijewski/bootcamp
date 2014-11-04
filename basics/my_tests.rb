@@ -44,6 +44,9 @@ class ArticleTest < Minitest::Test
   end
 
   def test_votes
+    5.times { @article.like! }
+    2.times { @article.dislike! }
+    assert_equal 8, @article.votes
   end
 
   def test_contain
