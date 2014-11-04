@@ -18,6 +18,8 @@ class ArticleTest < Minitest::Test
   end
 
   def test_disliking
+    @article.dislike!
+    assert_equal 1, @article.dislikes
   end
 
   def test_points
