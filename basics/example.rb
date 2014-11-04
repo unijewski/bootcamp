@@ -44,10 +44,10 @@ class Article
   end
 
   def contain?(word)
-    if word.is_a?(Regexp)
-      body.match word
+    if body[word]
+      true
     else
-      body.include? word
+      false
     end
   end
 end
