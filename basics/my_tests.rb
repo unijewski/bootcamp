@@ -7,6 +7,7 @@ class ArticleTest < Minitest::Test
   end
 
   def test_initialization
+    assert_instance_of Article, Article.new('title', 'body', 'author')
   end
 
   def test_initialization_with_anonymous_author
@@ -46,7 +47,7 @@ class ArticleTest < Minitest::Test
   def test_votes
     5.times { @article.like! }
     2.times { @article.dislike! }
-    assert_equal 8, @article.votes
+    assert_equal 7, @article.votes
   end
 
   def test_contain
