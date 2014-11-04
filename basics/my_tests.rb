@@ -66,6 +66,7 @@ class ArticleTest < Minitest::Test
     assert_equal 7, @article.votes
   end
 
-  def test_contain_when_word_is_a_string
+  def test_contain
+    assert_equal true, @article.contain?('body')
   end
 end
