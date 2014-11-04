@@ -152,6 +152,6 @@ class WebPage
   end
 
   def search(query)
-    load.select { |article| article if article.contain?(query) }
+    load.select { |article| article.contain?(query) }
   end
 end
