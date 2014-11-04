@@ -137,11 +137,7 @@ class WebPage
   end
 
   def votes
-    if load.empty?
-      0
-    else
-      load.map(&:votes).reduce(:+)
-    end
+    load.map(&:votes).inject(0, :+)
   end
 
   def authors
