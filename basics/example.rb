@@ -69,18 +69,15 @@ class ArticlesFileSystem
   end
 
   def load
-    array = []
-    Dir[self.directory + '/*.article'].each do |file|
-      title = file.slice(9..-9).capitalize.gsub('_', ' ')
-      IO.readlines(file).each do |line|
-        author, likes, dislikes, body = line.split('||')
-        article = Article.new(title, body, author)
-        article.likes = likes.to_i
-        article.dislikes = dislikes.to_i
-        array << article
-      end
+    Dir[directory + '/*.article'].map do |file|
+      title = File.basename(file, File.extname(file)).capitalize.gsub('_', ' ')
+      data = File.read(file)
+      author, likes, dislikes, body = data.split('||')
+      article = Article.new(title, body, author)
+      article.likes = likes.to_i
+      article.dislikes = dislikes.to_i
+      article
     end
-    array
   end
 end
 
