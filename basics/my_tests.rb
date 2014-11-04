@@ -3,12 +3,12 @@ require './example'
 
 class ArticleTest < Minitest::Test
   def setup
-    @article = Article.new('title', 'body', 'author')
+    @article = Article.new('title', 'bodybodybody', 'author')
   end
 
   def test_initialization
     assert_equal 'title', @article.title
-    assert_equal 'body', @article.body
+    assert_equal 'bodybodybody', @article.body
     assert_equal 'author', @article.author
     assert_in_delta Time.now, @article.created_at
     assert_equal 0, @article.likes
@@ -41,20 +41,23 @@ class ArticleTest < Minitest::Test
     assert_equal 3, @article.points
   end
 
-  def test_long_lines_when
+  def test_long_lines
   end
 
   def test_truncate
+    assert_equal '...', @article.truncate(3)
   end
 
   def test_truncate_when_limit_is_longer_then_body
+    assert_equal 'bodybodybody', @article.truncate(15)
   end
 
   def test_truncate_when_limit_is_same_as_body_length
+    assert_equal 'bodybody...', @article.truncate(11)
   end
 
   def test_length
-    assert_equal 4, @article.length
+    assert_equal 12, @article.length
   end
 
   def test_votes
