@@ -23,6 +23,9 @@ class ArticleTest < Minitest::Test
   end
 
   def test_points
+    5.times { @article.like! }
+    2.times { @article.dislike! }
+    assert_equal 3, @article.points
   end
 
   def test_long_lines
