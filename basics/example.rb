@@ -111,29 +111,29 @@ class WebPage
   end
 
   def longest_articles
-    load.sort_by { |article| article.body.length }.reverse
+    load.sort_by(&:length).reverse
   end
 
   def best_articles
-    load.sort_by { |article| article.points }.reverse
+    load.sort_by(&:points).reverse
   end
 
   def worst_articles
-    load.sort_by { |article| article.points }
+    load.sort_by(&:points)
   end
 
   def best_article
     raise WebPage::NoArticlesFound if load.empty?
-    load.max_by { |article| article.points }
+    load.max_by(&:points)
   end
 
   def worst_article
     raise WebPage::NoArticlesFound if load.empty?
-    load.min_by { |article| article.points }
+    load.min_by(&:points)
   end
 
   def most_controversial_articles
-    load.sort_by { |article| article.votes }.reverse
+    load.sort_by(&:votes).reverse
   end
 
   def votes
