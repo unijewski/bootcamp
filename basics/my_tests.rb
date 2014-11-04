@@ -16,6 +16,13 @@ class ArticleTest < Minitest::Test
   end
 
   def test_initialization_with_anonymous_author
+    @article2 = Article.new('title', 'body')
+    assert_equal 'title', @article2.title
+    assert_equal 'body', @article2.body
+    assert_equal nil, @article2.author
+    assert_in_delta Time.now, @article2.created_at
+    assert_equal 0, @article2.likes
+    assert_equal 0, @article2.dislikes
   end
 
   def test_liking
