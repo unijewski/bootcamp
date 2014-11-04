@@ -42,7 +42,7 @@ class ArticleTest < Minitest::Test
   end
 
   def test_long_lines
-    @article2 = Article.new('title', 'text' * 80)
+    @article2 = Article.new('title', ('text' * 80) + '\n' + ('body' * 10))
     assert_equal ['text' * 80], @article2.long_lines
   end
 
