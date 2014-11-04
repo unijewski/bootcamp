@@ -42,6 +42,7 @@ class ArticleTest < Minitest::Test
   end
 
   def test_length
+    assert_equal 4, @article.length
   end
 
   def test_votes
