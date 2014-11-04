@@ -3,11 +3,16 @@ require './example'
 
 class ArticleTest < Minitest::Test
   def setup
-    @article = Article.new('title', 'body')
+    @article = Article.new('title', 'body', 'author')
   end
 
   def test_initialization
-    assert_instance_of Article, Article.new('title', 'body', 'author')
+    assert_equal 'title', @article.title
+    assert_equal 'body', @article.body
+    assert_equal 'author', @article.author
+    assert_in_delta Time.now, @article.created_at
+    assert_equal 0, @article.likes
+    assert_equal 0, @article.dislikes
   end
 
   def test_initialization_with_anonymous_author
@@ -29,7 +34,7 @@ class ArticleTest < Minitest::Test
     assert_equal 3, @article.points
   end
 
-  def test_long_lines
+  def test_long_lines_when
   end
 
   def test_truncate
@@ -51,6 +56,6 @@ class ArticleTest < Minitest::Test
     assert_equal 7, @article.votes
   end
 
-  def test_contain
+  def test_contain_when_word_is_a_string
   end
 end
