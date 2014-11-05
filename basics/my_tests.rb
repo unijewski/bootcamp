@@ -96,5 +96,21 @@ class ArticlesFileSystemTest < Minitest::Test
   end
 
   def test_loading
+    @articles_db.save(@articles)
+    loaded_articles = @articles_db.load
+
+    assert_equal 'author', loaded_articles[0].author
+    assert_equal 0, loaded_articles[0].likes
+    assert_equal 0, loaded_articles[0].dislikes
+    assert_in_delta Time.now, loaded_articles[0].created_at
+    assert_equal 'bodybodybody', loaded_articles[0].body
+    assert_equal 'Title', loaded_articles[0].title
+
+    assert_equal 'author2', loaded_articles[1].author
+    assert_equal 0, loaded_articles[1].likes
+    assert_equal 0, loaded_articles[1].dislikes
+    assert_in_delta Time.now, loaded_articles[1].created_at
+    assert_equal 'bodybodybody2', loaded_articles[1].body
+    assert_equal 'Title2', loaded_articles[1].title
   end
 end
