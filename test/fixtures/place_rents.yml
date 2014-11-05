@@ -1,8 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 bmw_at_renoma:
+  id: 1
   start_date: <%= 5.days.ago.to_s(:db) %>
   end_date: <%= 2.days.ago.to_s(:db) %>
-  car_id: bmw
-  parking_id: renoma
+  car_id: 1
+  parking_id: 1
   price: 125.00
