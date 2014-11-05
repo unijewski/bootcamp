@@ -72,3 +72,20 @@ class ArticleTest < Minitest::Test
     assert_equal true, @article.contain?('body')
   end
 end
+
+class ArticlesFileSystemTest < Minitest::Test
+  def setup
+    @article = Article.new('title', 'bodybodybody', 'author')
+    @article2 = Article.new('title2', 'bodybodybody2', 'author2')
+
+    @directory = Dir.mktmpdir
+    @articles_db = ArticlesFileSystem.new(@directory)
+    @articles = [@article, @article2]
+  end
+
+  def test_saving
+  end
+
+  def test_loading
+  end
+end
