@@ -84,6 +84,15 @@ class ArticlesFileSystemTest < Minitest::Test
   end
 
   def test_saving
+    @articles_db.save(@articles)
+    assert File.exists?("#{@directory}/title.article")
+    assert File.exists?("#{@directory}/title2.article")
+
+    loaded_file = File.read("#{@directory}/title.article")
+    loaded_file2 = File.read("#{@directory}/title2.article")
+
+    assert_equal 'author||0||0||bodybodybody', loaded_file
+    assert_equal 'author2||0||0||bodybodybody2', loaded_file2
   end
 
   def test_loading
