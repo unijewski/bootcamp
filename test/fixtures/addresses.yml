@@ -1,11 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  city: MyString
-  street: MyString
-  zip_code: MyString
-
-two:
-  city: MyString
-  street: MyString
-  zip_code: MyString
+wroclaw:
+  city: Wroclaw
+  street: Swidnicka
+  zip_code: 50-950
