@@ -113,4 +113,8 @@ class ArticlesFileSystemTest < Minitest::Test
     assert_equal 'bodybodybody2', loaded_articles[1].body
     assert_equal 'Title2', loaded_articles[1].title
   end
+
+  def teardown
+    FileUtils.rm_rf(@directory)
+  end
 end
