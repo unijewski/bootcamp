@@ -8,7 +8,7 @@ class Parking < ActiveRecord::Base
   validates :places, presence: true
   validates :hour_price, presence: true,
                          numericality: true
-  validates :date_price, presence: true,
+  validates :day_price, presence: true,
                          numericality: true
   validates :kind, inclusion: { in: KIND_TYPES }
 end
