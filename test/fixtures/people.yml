@@ -1,6 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 steve:
-  id: 1
   first_name: Steve
   last_name: Jobs

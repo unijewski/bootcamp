@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 bmw:
-  id: 1
   model: BMW 535i
   registration_number: DW 12345
-  owner_id: 1
+  owner: steve
