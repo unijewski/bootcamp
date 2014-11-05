@@ -1,5 +1,5 @@
 class Parking < ActiveRecord::Base
   belongs_to :address
-  belongs_to :owner, class_name: Person
+  belongs_to :owner, class_name: 'Person'
   has_many :place_rents
 end
