@@ -8,11 +8,11 @@ class Parking < ActiveRecord::Base
 
   validates :places, presence: true
   validates :hour_price, presence: true,
-                         format: { with: PRICE_REGEX },
+                         format: { with: PRICE_REGEX,
                                    numericality: { greater_than: 0 }
                          }
   validates :day_price, presence: true,
-                        format: { with: PRICE_REGEX },
+                        format: { with: PRICE_REGEX,
                                    numericality: { greater_than: 0 }
                         }
   validates :kind, inclusion: { in: KIND_TYPES }
