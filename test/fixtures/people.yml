@@ -1,9 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  first_name: MyString
-  last_name: MyString
-
-two:
-  first_name: MyString
-  last_name: MyString
+steve:
+    first_name: Steve
+    last_name: Jobs
