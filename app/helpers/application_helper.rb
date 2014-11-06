@@ -1,5 +1,5 @@
 module ApplicationHelper
   def page_title
-    params[:controller].capitalize.gsub('_', ' ')
+    params[:controller].humanize
   end
 end
