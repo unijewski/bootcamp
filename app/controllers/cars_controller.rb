@@ -30,6 +30,7 @@ class CarsController < ApplicationController
   def update
     if @car.update(car_params)
       redirect_to @car
+      flash[:notice] = 'The car has been updated!'
     else
       render 'edit'
     end
