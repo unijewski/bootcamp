@@ -1,0 +1,8 @@
+<h1>Place rent details</h1>
+<ul>
+  <li><b>Start date:</b> <%= @place_rent.start_date.strftime('%d.%m.%Y, %H:%M') %></li>
+  <li><b>End date:</b> <%= @place_rent.end_date.strftime('%d.%m.%Y, %H:%M') %></li>
+  <li><b>Car:</b> <%= @place_rent.car.try(:model) %> <%= @place_rent.car.try(:registration_number) %></li>
+  <li><b>Parking:</b> <%= @place_rent.parking.address.try(:street) %> <%= @place_rent.parking.address.try(:city) %></li>
+</ul>
+<%= link_to 'Back to place rents', place_rents_path %>
