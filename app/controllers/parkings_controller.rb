@@ -30,6 +30,7 @@ class ParkingsController < ApplicationController
 
     if @parking.update(parking_params)
       redirect_to @parking
+      flash[:notice] = 'The parking has been updated!'
     else
       render 'edit'
     end
