@@ -30,6 +30,23 @@
     <%= f.text_field :day_price %>
   </p>
 
+  <%= f.fields_for :address do |address_builder| %>
+    <p>
+      <%= address_builder.label :city %><br>
+      <%= address_builder.text_area :city %>
+    </p>
+
+    <p>
+      <%= address_builder.label :street %><br>
+      <%= address_builder.text_area :street %>
+    </p>
+
+    <p>
+      <%= address_builder.label :zip_code %><br>
+      <%= address_builder.text_field :zip_code %>
+    </p>
+  <% end %>
+
   <p>
     <%= f.submit %>
   </p>
