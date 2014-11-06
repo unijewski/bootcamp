@@ -17,7 +17,7 @@ class ParkingsController < ApplicationController
     if @parking.save
       redirect_to @parking
     else
-      render 'form'
+      render 'new'
     end
   end
 
