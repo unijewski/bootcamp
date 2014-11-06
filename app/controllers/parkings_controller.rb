@@ -1,10 +1,11 @@
 class ParkingsController < ApplicationController
+  before_action :find_parking, only:[:show, :edit, :update, :destroy]
+
   def index
     @parkings = Parking.all
   end
 
   def show
-    @parking = Parking.find(params[:id])
   end
 
   def new
@@ -22,12 +23,9 @@ class ParkingsController < ApplicationController
   end
 
   def edit
-    @parking = Parking.find(params[:id])
   end
 
   def update
-    @parking = Parking.find(params[:id])
-
     if @parking.update(parking_params)
       redirect_to @parking
       flash[:notice] = 'The parking has been updated!'
@@ -37,7 +35,6 @@ class ParkingsController < ApplicationController
   end
 
   def destroy
-    @parking = Parking.find(params[:id])
     @parking.destroy
 
     redirect_to parkings_path
@@ -47,5 +44,9 @@ class ParkingsController < ApplicationController
 
   def parking_params
     params.require(:parking).permit(:places, :kind, :hour_price, :day_price, address_attributes:[:city, :street, :zip_code])
+  end
+
+  def find_parking
+    @parking = Parking.find(params[:id])
   end
 end
