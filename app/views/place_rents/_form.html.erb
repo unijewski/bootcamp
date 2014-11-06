@@ -22,7 +22,7 @@
 
   <p>
     <%= f.label :model %><br>
-    <%= collection_select(:place_rent, :car_id, current_person.cars, :id, :model) %>
+    <%= collection_select :place_rent, :car_id, current_person.cars, :id, :model %>
   </p>
 
   <p>
