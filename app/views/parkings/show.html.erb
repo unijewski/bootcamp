@@ -4,9 +4,9 @@
   <li><b>Kind:</b> <%= @parking.kind %></li>
   <li><b>Hour price:</b> <%= @parking.hour_price %></li>
   <li><b>Day price:</b> <%= @parking.day_price %></li>
-  <li><b>City:</b> <%= @parking.address.city %></li>
-  <li><b>Street:</b> <%= @parking.address.street %></li>
-  <li><b>Zip code:</b> <%= @parking.address.zip_code %></li>
-  <li><b>Owner:</b> <%= @parking.owner.first_name + ' ' + @parking.owner.last_name %></li>
+  <li><b>City:</b> <%= @parking.address.try(:city) %></li>
+  <li><b>Street:</b> <%= @parking.address.try(:street) %></li>
+  <li><b>Zip code:</b> <%= @parking.address.try(:zip_code) %></li>
+  <li><b>Owner:</b> <%= @parking.owner.try(:first_name) + ' ' + @parking.owner.try(:last_name) %></li>
 </ul>
 <%= link_to 'Back to parkings', parkings_path %>
