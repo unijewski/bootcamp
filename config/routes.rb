@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :parkings
+  resources :cars
 
   root 'parkings#index'
   # The priority is based upon order of creation: first created -> highest priority.
