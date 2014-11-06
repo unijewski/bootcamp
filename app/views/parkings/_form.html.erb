@@ -17,12 +17,12 @@
 
   <p>
     <%= f.label :kind %><br>
-    <%= f.text_field :kind %>
+    <%= f.select :kind, Parking::KIND_TYPES %>
   </p>
 
   <p>
     <%= f.label :hour_price %><br>
-    <%= f.text_area :hour_price %>
+    <%= f.text_field :hour_price %>
   </p>
 
   <p>
