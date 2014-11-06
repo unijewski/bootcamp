@@ -3,6 +3,7 @@ class Parking < ActiveRecord::Base
   KIND_TYPES = %w(outdoor indoor private street)
 
   belongs_to :address
+  accepts_nested_attributes_for :address
   belongs_to :owner, class_name: 'Person'
   has_many :place_rents
 
