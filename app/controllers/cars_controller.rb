@@ -1,10 +1,12 @@
 class CarsController < ApplicationController
+  before_action :find_car, only:[:show, :edit, :update, :destroy]
+  before_action :is_owner?, only:[:show, :edit, :update, :destroy]
+
   def index
     @cars = current_person.cars
   end
 
   def show
-    @car = Car.find(params[:id])
   end
 
   def new
@@ -23,12 +25,9 @@ class CarsController < ApplicationController
   end
 
   def edit
-    @car = Car.find(params[:id])
   end
 
   def update
-    @car = Car.find(params[:id])
-
     if @car.update(car_params)
       redirect_to @car
     else
@@ -37,7 +36,6 @@ class CarsController < ApplicationController
   end
 
   def destroy
-    @car = Car.find(params[:id])
     @car.destroy
 
     redirect_to cars_path
@@ -47,5 +45,13 @@ class CarsController < ApplicationController
 
   def car_params
     params.require(:car).permit(:registration_number, :model)
+  end
+
+  def find_car
+    @car = Car.find(params[:id])
+  end
+
+  def is_owner?
+    redirect_to cars_path unless @car.owner == current_person
   end
 end
