@@ -5,4 +5,11 @@ class CarsTest < ActionDispatch::IntegrationTest
     visit '/cars'
     assert has_content? 'Listing cars'
   end
+
+  test 'user opens car details' do
+    visit '/cars'
+    click_link 'Show'
+    assert has_content? 'Registration number'
+    assert has_content? 'Model'
+  end
 end
