@@ -17,8 +17,9 @@ class ParkingsController < ApplicationController
     @parking = Parking.new(parking_params)
 
     if @parking.save
-      redirect_to @parking
+      redirect_to @parking, notice: 'The parking has been created!'
     else
+      flash[:alert] = 'Oooups! Something went wrong'
       render 'new'
     end
   end
@@ -32,6 +33,7 @@ class ParkingsController < ApplicationController
       redirect_to @parking
       flash[:notice] = 'The parking has been updated!'
     else
+      flash[:alert] = 'Oooups! Something went wrong'
       render 'edit'
     end
   end
@@ -39,7 +41,7 @@ class ParkingsController < ApplicationController
   def destroy
     @parking.destroy
 
-    redirect_to parkings_path
+    redirect_to parkings_path, notice: 'The parking has been deleted!'
   end
 
   private
