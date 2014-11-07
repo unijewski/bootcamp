@@ -1,6 +1,5 @@
 class CarsController < ApplicationController
   before_action :find_car, only:[:show, :edit, :update, :destroy]
-  before_action :is_owner?, only:[:show, :edit, :update, :destroy]
 
   def index
     @cars = current_person.cars
@@ -49,10 +48,6 @@ class CarsController < ApplicationController
   end
 
   def find_car
-    @car = Car.find(params[:id])
-  end
-
-  def is_owner?
-    redirect_to cars_path unless @car.owner == current_person
+    @car = current_person.cars.find(params[:id])
   end
 end
