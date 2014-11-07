@@ -14,12 +14,12 @@ class CarsController < ApplicationController
   end
 
   def create
-    @car = Car.new(car_params)
-    @car.owner = current_person
+    @car = current_person.cars.build(car_params)
 
     if @car.save
-      redirect_to @car
+      redirect_to @car, notice: 'The car has been created!'
     else
+      flash[:alert] = 'Oooups! Something went wrong'
       render 'new'
     end
   end
@@ -29,9 +29,9 @@ class CarsController < ApplicationController
 
   def update
     if @car.update(car_params)
-      redirect_to @car
-      flash[:notice] = 'The car has been updated!'
+      redirect_to @car, notice: 'The car has been updated!'
     else
+      flash[:alert] = 'Oooups! Something went wrong'
       render 'edit'
     end
   end
@@ -39,7 +39,7 @@ class CarsController < ApplicationController
   def destroy
     @car.destroy
 
-    redirect_to cars_path
+    redirect_to cars_path, notice: 'The car has been deleted!'
   end
 
   private
