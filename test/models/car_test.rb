@@ -21,10 +21,9 @@ class CarTest < ActiveSupport::TestCase
     assert @car.errors.has_key?(:model)
   end
 
-  test 'when car has no parameters' do
-    @car.registration_number, @car.model = nil
+  test 'when car has no owner parameter' do
+    @car.owner = nil
     assert_not @car.valid?
-    assert @car.errors.has_key?(:registration_number)
-    assert @car.errors.has_key?(:model)
+    assert @car.errors.has_key?(:owner_id)
   end
 end
