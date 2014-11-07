@@ -1,23 +1,42 @@
 require 'test_helper'
 
 class AddressTest < ActiveSupport::TestCase
-  test 'should save address with all parameters' do
-    address = addresses(:wroclaw)
-    assert address.save
+  def setup
+    @address = addresses(:wroclaw)
   end
 
-  test 'should not save address with no parameters' do
-    address = Address.new
-    assert_not address.save
+  test 'address should be valid' do
+    assert @address.valid?
   end
 
-  test 'should not save when one of parameters is not given' do
-    address = Address.new(city: 'city', street: 'street')
-    assert_not address.save
+  test 'when address has no city parameter' do
+    @address.city = nil
+    assert_not @address.valid?
+    assert @address.errors.has_key?(:city)
+  end
+
+  test 'when address has no street parameter' do
+    @address.street = nil
+    assert_not @address.valid?
+    assert @address.errors.has_key?(:street)
+  end
+
+  test 'when address has no zip_code parameter' do
+    @address.zip_code = nil
+    assert_not @address.valid?
+    assert @address.errors.has_key?(:zip_code)
+  end
+
+  test 'when address has no parameters' do
+    @address.city, @address.street, @address.zip_code = nil
+    assert_not @address.valid?
+    assert @address.errors.has_key?(:city)
+    assert @address.errors.has_key?(:street)
+    assert @address.errors.has_key?(:zip_code)
   end
 
   test 'should not save when zip code is not valid' do
-    address = Address.new(city: 'city', street: 'street', zip_code: '123456')
-    assert_not address.save
+    @address.zip_code = '123456'
+    assert_not @address.valid?
   end
 end
