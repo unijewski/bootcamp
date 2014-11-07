@@ -85,7 +85,6 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     select '5', from: 'place_rent_end_date_3i'
     select '10', from: 'place_rent_end_date_4i'
     select '20', from: 'place_rent_end_date_5i'
-    # option = Person.first.cars.first.model
     select 'BMW 535i', from: 'place_rent_car_id'
     click_button 'Create Place rent'
     assert has_content? 'The place rent has been created!'
