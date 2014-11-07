@@ -54,4 +54,10 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert has_content? 'Street: Street'
     assert has_content? 'The parking has been updated!'
   end
+
+  test 'user removes a parking' do
+    visit '/parkings'
+    click_link 'Remove'
+    assert has_content? 'The parking has been deleted!'
+  end
 end
