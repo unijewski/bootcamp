@@ -100,7 +100,7 @@ class WebPage
   end
 
   def save
-    articles_db.save(articles)
+    @articles_db.save(articles)
   end
 
   def new_article(title, body, author)
