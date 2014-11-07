@@ -15,7 +15,7 @@ class PersonTest < ActiveSupport::TestCase
     assert @person.errors.has_key?(:first_name)
   end
 
-  test 'when person has no first_name parameter' do
+  test 'when person has no last_name parameter' do
     @person.last_name = nil
     assert_not @person.valid?
     assert @person.errors.has_key?(:last_name)
