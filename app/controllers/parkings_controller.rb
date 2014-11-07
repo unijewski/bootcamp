@@ -10,6 +10,7 @@ class ParkingsController < ApplicationController
 
   def new
     @parking = Parking.new
+    @parking.build_address
   end
 
   def create
