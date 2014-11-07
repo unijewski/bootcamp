@@ -1,18 +1,30 @@
 require 'test_helper'
 
 class PersonTest < ActiveSupport::TestCase
-  test 'should save person with all parameters' do
-    person = people(:steve)
-    assert person.save
+  def setup
+    @person = people(:steve)
   end
 
-  test 'should not save person with first_name parameter' do
-    person = Person.new(last_name: 'last_name')
-    assert_not person.save
+  test 'person should be valid' do
+    assert @person.valid?
   end
 
-  test 'should save when only first_name is given' do
-    person = Person.new(first_name: 'first_name')
-    assert person.save
+  test 'when person has no first_name parameter' do
+    @person.first_name = nil
+    assert_not @person.valid?
+    assert @person.errors.has_key?(:first_name)
+  end
+
+  test 'when person has no first_name parameter' do
+    @person.last_name = nil
+    assert_not @person.valid?
+    assert @person.errors.has_key?(:last_name)
+  end
+
+  test 'when person has no parameters' do
+    @person.first_name, @person.last_name = nil
+    assert_not @person.valid?
+    assert @person.errors.has_key?(:first_name)
+    assert @person.errors.has_key?(:last_name)
   end
 end
