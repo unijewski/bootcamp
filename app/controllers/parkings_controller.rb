@@ -24,6 +24,7 @@ class ParkingsController < ApplicationController
   end
 
   def edit
+    @parking.build_address
   end
 
   def update
