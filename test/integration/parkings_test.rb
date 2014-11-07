@@ -60,4 +60,26 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     click_link 'Remove'
     assert has_content? 'The parking has been deleted!'
   end
+
+  test 'user rents a place rent on a parking' do
+    visit '/parkings'
+    click_link 'Rent a place'
+    select '2015', from: 'place_rent_start_date_1i'
+    select 'January', from: 'place_rent_start_date_2i'
+    select '1', from: 'place_rent_start_date_3i'
+    select '10', from: 'place_rent_start_date_4i'
+    select '20', from: 'place_rent_start_date_5i'
+    select '2015', from: 'place_rent_end_date_1i'
+    select 'January', from: 'place_rent_end_date_2i'
+    select '5', from: 'place_rent_end_date_3i'
+    select '10', from: 'place_rent_end_date_4i'
+    select '20', from: 'place_rent_end_date_5i'
+    option = Person.first.cars.first.model
+    select option, from: 'place_rent_car_id'
+    click_button 'Create Place rent'
+    assert has_content? 'The place rent has been created!'
+    assert has_content? 'Start date: 01.01.2015, 10:20'
+    assert has_content? 'End date: 05.01.2015, 10:20'
+    assert has_content? 'Car: ' + option.to_s
+  end
 end

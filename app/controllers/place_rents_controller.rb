@@ -16,8 +16,9 @@ class PlaceRentsController < ApplicationController
     @place_rent.parking = find_parking
 
     if @place_rent.save
-      redirect_to @place_rent
+      redirect_to @place_rent, notice: 'The place rent has been created!'
     else
+      flash[:alert] = 'Oooups! Something went wrong'
       render 'new'
     end
   end
