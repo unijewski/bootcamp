@@ -37,4 +37,10 @@ class CarsTest < ActionDispatch::IntegrationTest
     assert has_content? 'Model: BMW'
     assert has_content? 'The car has been updated!'
   end
+
+  test 'user removes a car' do
+    visit '/cars'
+    click_link 'Remove'
+    assert has_content? 'The car has been deleted!'
+  end
 end
