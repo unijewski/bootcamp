@@ -28,5 +28,13 @@ class CarsTest < ActionDispatch::IntegrationTest
     assert has_content? 'The car has been created!'
   end
 
-
+  test 'user edits a car' do
+    visit '/cars'
+    click_link 'Edit'
+    fill_in_the_form
+    click_button 'Update Car'
+    assert has_content? 'Registration number: KR 1234A'
+    assert has_content? 'Model: BMW'
+    assert has_content? 'The car has been updated!'
+  end
 end
