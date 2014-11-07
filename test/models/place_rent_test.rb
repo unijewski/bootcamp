@@ -24,12 +24,12 @@ class PlaceRentTest < ActiveSupport::TestCase
   test 'when place_rent has no parking parameter' do
     @place_rent.parking = nil
     assert_not @place_rent.valid?
-    assert @place_rent.errors.has_key?(:parking_id)
+    assert @place_rent.errors.has_key?(:parking)
   end
 
   test 'when place_rent has no car parameter' do
     @place_rent.car = nil
     assert_not @place_rent.valid?
-    assert @place_rent.errors.has_key?(:car_id)
+    assert @place_rent.errors.has_key?(:car)
   end
 end
