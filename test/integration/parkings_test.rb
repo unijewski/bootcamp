@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class ParkingsTest < ActionDispatch::IntegrationTest
+  def setup
+    @parking = parkings(:renoma)
+  end
+
   def fill_in_the_form
     fill_in 'Places', with: '100'
     select 'private', from: 'Kind'
@@ -13,16 +17,19 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test 'user opens parkings index' do
     visit '/parkings'
-    assert has_content? 'parkings'
+    assert has_content? 'Listing parkings'
   end
 
   test 'user opens parking details' do
     visit '/parkings'
     click_link 'Show'
-    assert has_content? 'Places'
-    assert has_content? 'Kind'
-    assert has_content? 'Hour price'
-    assert has_content? 'Day price'
+    assert has_content? 'Places: 600'
+    assert has_content? 'Kind: private'
+    assert has_content? 'Hour price: 3.0'
+    assert has_content? 'Day price: 25.0'
+    assert has_content? 'City: 50-950 Wroclaw'
+    assert has_content? 'Street: Swidnicka'
+    assert has_content? 'Owner: Steve Jobs'
   end
 
   test 'user adds a new parking' do
@@ -59,6 +66,10 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     visit '/parkings'
     click_link 'Remove'
     assert has_content? 'The parking has been deleted!'
+    assert_not has_content? 'Wroclaw'
+    assert_not has_content? '600'
+    assert_not has_content? '3.0'
+    assert_not has_content? '25.0'
   end
 
   test 'user rents a place rent on a parking' do
@@ -74,12 +85,12 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     select '5', from: 'place_rent_end_date_3i'
     select '10', from: 'place_rent_end_date_4i'
     select '20', from: 'place_rent_end_date_5i'
-    option = Person.first.cars.first.model
-    select option, from: 'place_rent_car_id'
+    # option = Person.first.cars.first.model
+    select 'BMW 535i', from: 'place_rent_car_id'
     click_button 'Create Place rent'
     assert has_content? 'The place rent has been created!'
     assert has_content? 'Start date: 01.01.2015, 10:20'
     assert has_content? 'End date: 05.01.2015, 10:20'
-    assert has_content? 'Car: ' + option.to_s
+    assert has_content? 'Car: BMW 535i'
   end
 end
