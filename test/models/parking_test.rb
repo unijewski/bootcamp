@@ -1,54 +1,53 @@
 require 'test_helper'
 
 class ParkingTest < ActiveSupport::TestCase
-  test 'should save parking with all parameters' do
-    parking = parkings(:renoma)
-    assert parking.save
+  def setup
+    @parking = parkings(:renoma)
   end
 
-  test 'should not save parking with no parameters' do
-    parking = Parking.new
-    assert_not parking.save
+  test 'parking should be valid' do
+    assert @parking.valid?
   end
 
-  test 'should not save when only one of parameters is given' do
-    parking = Parking.new(places: 1000)
-    assert_not parking.save
+  test 'when parking has no places parameter' do
+    @parking.places = nil
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:places)
   end
 
-  test 'should not save when kind field is not included in kind types' do
-    parking = Parking.new(
-      places: 1000,
-      kind: 'kind',
-      hour_price: 5.00,
-      day_price: 50.00,
-      address_id: 1,
-      owner_id: 1
-    )
-    assert_not parking.save
+  test 'when parking has no hour_price parameter' do
+    @parking.hour_price = nil
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:hour_price)
   end
 
-  test 'should not save when hour price field is not valid' do
-    parking = Parking.new(
-      places: 1000,
-      kind: 'private',
-      hour_price: 5.12345,
-      day_price: 50.00,
-      address_id: 1,
-      owner_id: 1
-    )
-    assert_not parking.save
+  test 'when parking has no day_price parameter' do
+    @parking.day_price = nil
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:day_price)
   end
 
-  test 'should not save when day price field is not valid' do
-    parking = Parking.new(
-      places: 1000,
-      kind: 'private',
-      hour_price: 5.00,
-      day_price: 5.12345,
-      address_id: 1,
-      owner_id: 1
-    )
-    assert_not parking.save
+  test 'when parking has no kind parameter' do
+    @parking.kind = nil
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:kind)
+  end
+
+  test 'when hour_price is not valid' do
+    @parking.hour_price = '10.123123'
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:hour_price)
+  end
+
+  test 'when day_price is not valid' do
+    @parking.day_price = '10.123123'
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:day_price)
+  end
+
+  test 'when kind is not valid' do
+    @parking.kind = 'public'
+    assert_not @parking.valid?
+    assert @parking.errors.has_key?(:kind)
   end
 end
