@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
-  ZIP_CODE_REGEX = /\A\d{2}-\d{3}\Z/
+  ZIP_CODE_REGEX = /\A\d{2}-\d{3}\z/
 
   has_one :parking
 

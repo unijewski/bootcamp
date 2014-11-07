@@ -27,16 +27,9 @@ class AddressTest < ActiveSupport::TestCase
     assert @address.errors.has_key?(:zip_code)
   end
 
-  test 'when address has no parameters' do
-    @address.city, @address.street, @address.zip_code = nil
-    assert_not @address.valid?
-    assert @address.errors.has_key?(:city)
-    assert @address.errors.has_key?(:street)
-    assert @address.errors.has_key?(:zip_code)
-  end
-
   test 'should not save when zip code is not valid' do
     @address.zip_code = '123456'
     assert_not @address.valid?
+    assert @address.errors.has_key?(:zip_code)
   end
 end
