@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class CarsTest < ActionDispatch::IntegrationTest
+  def setup
+    @car = cars(:bmw)
+  end
+
   def fill_in_the_form
     fill_in 'Registration number', with: 'KR 1234A'
     fill_in 'Model', with: 'BMW'
@@ -9,13 +13,15 @@ class CarsTest < ActionDispatch::IntegrationTest
   test 'user opens cars index' do
     visit '/cars'
     assert has_content? 'Listing cars'
+    assert has_content? 'DW 12345'
+    assert has_content? 'BMW 535i'
   end
 
   test 'user opens car details' do
     visit '/cars'
     click_link 'Show'
-    assert has_content? 'Registration number'
-    assert has_content? 'Model'
+    assert has_content? 'Registration number: DW 12345'
+    assert has_content? 'Model: BMW 535i'
   end
 
   test 'user adds a new car' do
@@ -42,5 +48,7 @@ class CarsTest < ActionDispatch::IntegrationTest
     visit '/cars'
     click_link 'Remove'
     assert has_content? 'The car has been deleted!'
+    assert_not has_content? 'DW 12345'
+    assert_not has_content? 'BMW 535i'
   end
 end
