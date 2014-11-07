@@ -25,7 +25,7 @@ class ParkingsController < ApplicationController
   end
 
   def edit
-    @parking.build_address
+    @parking.build_address unless @parking.address
   end
 
   def update
