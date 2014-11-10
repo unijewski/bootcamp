@@ -50,4 +50,10 @@ class ParkingTest < ActiveSupport::TestCase
     assert_not @parking.valid?
     assert @parking.errors.has_key?(:kind)
   end
+
+  test 'when parking is deleted' do
+    place_rent = @parking.place_rents.first
+    @parking.destroy
+    assert_equal Time.now.utc.to_s, place_rent.reload.end_date.to_s
+  end
 end
