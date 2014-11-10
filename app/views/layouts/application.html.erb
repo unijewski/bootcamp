@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <p><%= link_to 'Cars', cars_path %> | <%= link_to 'Parkings', parkings_path %> | <%= link_to 'Place rents', place_rents_path %></p>
   <% if notice %>
   <p style='font-weight: bold; color: green;'>
     <%= notice %>
