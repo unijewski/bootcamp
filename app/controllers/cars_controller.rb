@@ -1,11 +1,14 @@
 class CarsController < ApplicationController
-  before_action :find_car, only:[:show, :edit, :update, :destroy]
+  before_action :find_car, only:[:edit, :update, :destroy]
 
   def index
     @cars = current_person.cars
   end
 
   def show
+    find_car
+  rescue ActiveRecord::RecordNotFound
+    redirect_to cars_path, alert: 'Car not found!'
   end
 
   def new

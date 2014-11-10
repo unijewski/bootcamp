@@ -1,11 +1,14 @@
 class ParkingsController < ApplicationController
-  before_action :find_parking, only:[:show, :edit, :update, :destroy]
+  before_action :find_parking, only:[:edit, :update, :destroy]
 
   def index
     @parkings = Parking.search(params)
   end
 
   def show
+    find_parking
+  rescue ActiveRecord::RecordNotFound
+    redirect_to parkings_path, alert: 'Parking not found!'
   end
 
   def new
