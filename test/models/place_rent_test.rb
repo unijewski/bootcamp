@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'pry'
 
 class PlaceRentTest < ActiveSupport::TestCase
   def setup
@@ -31,5 +32,22 @@ class PlaceRentTest < ActiveSupport::TestCase
     @place_rent.car = nil
     assert_not @place_rent.valid?
     assert @place_rent.errors.has_key?(:car)
+  end
+
+  test 'when we want to calculate a price for 3 days' do
+    @place_rent.save
+    assert_equal BigDecimal(291), @place_rent.price
+  end
+
+  test 'when we want to calculate a price for 3 days and 1 hour' do
+    @place_rent2 = place_rents(:bmw2_at_renoma)
+    @place_rent2.save
+    assert_equal BigDecimal(294), @place_rent2.price
+  end
+
+  test 'when we want to calculate a price for 3 hours' do
+    @place_rent3 = place_rents(:bmw3_at_renoma)
+    @place_rent3.save
+    assert_equal BigDecimal(9), @place_rent3.price
   end
 end

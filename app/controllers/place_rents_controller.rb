@@ -14,6 +14,7 @@ class PlaceRentsController < ApplicationController
   def create
     @place_rent = PlaceRent.new(place_rent_params)
     @place_rent.parking = find_parking
+    @place_rent.calculate_price
 
     if @place_rent.save
       redirect_to @place_rent, notice: 'The place rent has been created!'
