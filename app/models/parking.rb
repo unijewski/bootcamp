@@ -22,13 +22,13 @@ class Parking < ActiveRecord::Base
 
   scope :public_parkings, -> { where(kind: 'public') }
   scope :private_parkings, -> { where(kind: 'private') }
-  scope :parkings_by_day_price, -> (from_price, to_price) do
+  scope :by_day_price, -> (from_price, to_price) do
     where('day_price BETWEEN ? AND ?', (from_price || 0), (to_price || Float::MAX))
   end
-  scope :parkings_by_hour_price, -> (from_price, to_price) do
+  scope :by_hour_price, -> (from_price, to_price) do
     where('hour_price BETWEEN ? AND ?', (from_price || 0), (to_price || Float::MAX))
   end
-  scope :parkings_by_city, ->(city) { joins(:address).where('city = ?', city) }
+  scope :by_city, ->(city) { joins(:address).where('city = ?', city) }
 
   private
 
@@ -46,13 +46,13 @@ class Parking < ActiveRecord::Base
       parkings = private_parkings
     end
     if params[:day_price_start_range].present? || params[:day_price_end_range].present?
-      parkings = parkings_by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
+      parkings = by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
     end
     if params[:hour_price_start_range].present? || params[:hour_price_end_range].present?
-      parkings = parkings_by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
+      parkings = by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
     end
     if params[:city].present?
-      parkings = parkings_by_city(params[:city])
+      parkings = by_city(params[:city])
     end
     parkings
   end

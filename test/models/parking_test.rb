@@ -68,17 +68,17 @@ class ParkingTest < ActiveSupport::TestCase
   end
 
   test 'when we query about parkings by day price' do
-    parkings = Parking.parkings_by_day_price(20, 50)
+    parkings = Parking.by_day_price(20, 50)
     assert_equal 2, parkings.size
   end
 
   test 'when we query about parkings by hour price' do
-    parkings = Parking.parkings_by_hour_price(1, 10)
+    parkings = Parking.by_hour_price(1, 10)
     assert_equal 2, parkings.size
   end
 
   test 'when we query about parkings by city' do
-    parkings = Parking.parkings_by_city('Wroclaw')
+    parkings = Parking.by_city('Wroclaw')
     assert_equal 1, parkings.size
   end
 end
