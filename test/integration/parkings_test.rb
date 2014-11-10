@@ -92,4 +92,21 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert has_content? 'End date: 05.01.2015, 10:20'
     assert has_content? 'Car: BMW 535i'
   end
+
+  test 'user fill in the search form' do
+    visit '/parkings'
+    check 'kind_private'
+    fill_in 'day_price_start_range', with: '20.00'
+    fill_in 'day_price_end_range', with: '40.00'
+    fill_in 'hour_price_start_range', with: '3.00'
+    fill_in 'hour_price_end_range', with: '9.00'
+    fill_in 'city', with: 'Wroclaw'
+    click_button 'Search'
+    assert find_field('kind_private').checked?
+    assert_equal '20.00', find_field('day_price_start_range').value
+    assert_equal '40.00', find_field('day_price_end_range').value
+    assert_equal '3.00', find_field('hour_price_start_range').value
+    assert_equal '9.00', find_field('hour_price_end_range').value
+    assert_equal 'Wroclaw', find_field('city').value
+  end
 end
