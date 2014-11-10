@@ -22,7 +22,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test 'user opens parking details' do
     visit '/parkings'
-    click_link 'Show'
+    find('tr', text: 'Wroclaw').click_link 'Show'
     assert has_content? 'Places: 600'
     assert has_content? 'Kind: private'
     assert has_content? 'Hour price: 3.0'
@@ -49,7 +49,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test 'user edits a parking' do
     visit '/parkings'
-    click_link 'Edit'
+    find('tr', text: 'Wroclaw').click_link 'Edit'
     fill_in_the_form
     click_button 'Update Parking'
     assert has_content? 'Parking details'
@@ -64,7 +64,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test 'user removes a parking' do
     visit '/parkings'
-    click_link 'Remove'
+    find('tr', text: 'Wroclaw').click_link 'Remove'
     assert has_content? 'The parking has been deleted!'
     assert_not has_content? 'Wroclaw'
     assert_not has_content? '600'
@@ -74,7 +74,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test 'user rents a place rent on a parking' do
     visit '/parkings'
-    click_link 'Rent a place'
+    find('tr', text: 'Wroclaw').click_link 'Rent a place'
     select '2015', from: 'place_rent_start_date_1i'
     select 'January', from: 'place_rent_start_date_2i'
     select '1', from: 'place_rent_start_date_3i'
