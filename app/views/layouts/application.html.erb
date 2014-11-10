@@ -7,19 +7,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/flash' %>
   <p><%= link_to 'Cars', cars_path %> | <%= link_to 'Parkings', parkings_path %> | <%= link_to 'Place rents', place_rents_path %></p>
-  <% if notice %>
-  <p style='font-weight: bold; color: green;'>
-    <%= notice %>
-  </p>
-  <% end %>
-  <% if alert %>
-  <p style='font-weight: bold; color: red;'>
-    <%= alert %>
-  </p>
-  <% end %>
 
-<%= yield %>
+  <%= yield %>
 
 </body>
 </html>
