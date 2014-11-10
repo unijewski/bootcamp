@@ -5,3 +5,11 @@ renoma:
   day_price: 25.00
   address: wroclaw
   owner: steve
+
+renoma2:
+  places: 300
+  kind: public
+  hour_price: 6.00
+  day_price: 30.00
+  address: krakow
+  owner: steve

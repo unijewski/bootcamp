@@ -56,4 +56,29 @@ class ParkingTest < ActiveSupport::TestCase
     @parking.destroy
     assert_equal Time.now.utc.to_s, place_rent.reload.end_date.to_s
   end
+
+  test 'when we query about public parkings' do
+    parkings = Parking.public_parkings
+    assert_equal 1, parkings.size
+  end
+
+  test 'when we query about private parkings' do
+    parkings = Parking.private_parkings
+    assert_equal 1, parkings.size
+  end
+
+  test 'when we query about parkings by day price' do
+    parkings = Parking.parkings_by_day_price(20, 50)
+    assert_equal 2, parkings.size
+  end
+
+  test 'when we query about parkings by hour price' do
+    parkings = Parking.parkings_by_hour_price(1, 10)
+    assert_equal 2, parkings.size
+  end
+
+  test 'when we query about parkings by city' do
+    parkings = Parking.parkings_by_city('Wroclaw')
+    assert_equal 1, parkings.size
+  end
 end

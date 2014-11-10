@@ -20,6 +20,12 @@ class Parking < ActiveRecord::Base
                         }
   validates :kind, inclusion: { in: KIND_TYPES }
 
+  scope :public_parkings, -> { where(kind: 'public') }
+  scope :private_parkings, -> { where(kind: 'private') }
+  scope :parkings_by_day_price, ->(from_price, to_price) { where('day_price BETWEEN ? AND ?', from_price, to_price)  }
+  scope :parkings_by_hour_price, ->(from_price, to_price) { where('hour_price BETWEEN ? AND ?', from_price, to_price)  }
+  scope :parkings_by_city, ->(city) { joins(:address).where('city = ?', city) }
+
   private
 
   def finish_rental
