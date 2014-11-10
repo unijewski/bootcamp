@@ -2,7 +2,7 @@ class ParkingsController < ApplicationController
   before_action :find_parking, only:[:show, :edit, :update, :destroy]
 
   def index
-    @parkings = Parking.all
+    @parkings = Parking.search(params)
   end
 
   def show

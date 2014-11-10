@@ -31,4 +31,25 @@ class Parking < ActiveRecord::Base
   def finish_rental
     self.place_rents.each { |place_rent| place_rent.update(end_date: Time.now) }
   end
+
+  def self.search(params)
+    parkings = Parking.all
+
+    if params[:kind_private].present?
+      parkings = public_parkings
+    end
+    if params[:kind_public].present?
+      parkings = private_parkings
+    end
+    if params[:day_price_start_range].present? && params[:day_price_end_range].present?
+      parkings = parkings_by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
+    end
+    if params[:hour_price_start_range].present? && params[:hour_price_end_range].present?
+      parkings = parkings_by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
+    end
+    if params[:city].present?
+      parkings = parkings_by_city(params[:city])
+    end
+    parkings
+  end
 end
