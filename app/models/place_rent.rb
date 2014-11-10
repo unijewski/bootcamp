@@ -6,6 +6,8 @@ class PlaceRent < ActiveRecord::Base
 
   validates :start_date, :end_date, :parking, :car, presence: true
 
+  scope :unfinished, -> { where('end_date > ?', Time.now) }
+
   def calculate_price
     self.price = (day_price * day_spent) + (hour_price * hours_spent)
   end
