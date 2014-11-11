@@ -1,10 +1,8 @@
 class SessionsController < ApplicationController
   def create
-    person_id = Account.find_by(email: params[:session][:email]).try(:person_id)
-    person = Person.find_by(id: person_id)
     account = Account.authenticate(params[:session][:email], params[:session][:password])
 
-    sign_in(person, account)
+    sign_in(account)
   end
 
   def destroy
@@ -14,9 +12,9 @@ class SessionsController < ApplicationController
 
   private
 
-  def sign_in(person, account)
-    if person && account
-      session[:id] = person.id
+  def sign_in(account)
+    if account
+      session[:id] = account.person.id
       redirect_back_or root_path
       flash[:notice] = 'Welcome!'
     else
