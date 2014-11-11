@@ -40,19 +40,19 @@ class Parking < ActiveRecord::Base
     parkings = Parking.all
 
     if params[:kind_private].present?
-      parkings = public_parkings
+      parkings = parkings.public_parkings
     end
     if params[:kind_public].present?
-      parkings = private_parkings
+      parkings = parkings.private_parkings
     end
     if params[:day_price_start_range].present? || params[:day_price_end_range].present?
-      parkings = by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
+      parkings = parkings.by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
     end
     if params[:hour_price_start_range].present? || params[:hour_price_end_range].present?
-      parkings = by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
+      parkings = parkings.by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
     end
     if params[:city].present?
-      parkings = by_city(params[:city])
+      parkings = parkings.by_city(params[:city])
     end
     parkings
   end
