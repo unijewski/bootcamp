@@ -10,11 +10,14 @@
   <%= render 'layouts/flash' %>
   <p>
   <% if current_person %>
-    Welcome, <%= current_person.full_name %> | <%= link_to 'Logout', session_path(session), method: :delete %> |
-  <% end %>
-  <%= link_to 'Cars', cars_path %> |
+    Welcome, <%= current_person.full_name %> | <%= link_to 'Sign out', session_path(session), method: :delete %> |
+    <%= link_to 'Cars', cars_path if current_person %> |
     <%= link_to 'Parkings', parkings_path %> |
-    <%= link_to 'Place rents', place_rents_path %>
+    <%= link_to 'Place rents', place_rents_path if current_person %>
+  <% else %>
+    <%= link_to 'Sign in', new_session_path %> |
+    <%= link_to 'Parkings', parkings_path %>
+  <% end %>
   </p>
 
   <%= yield %>
