@@ -20,7 +20,7 @@ class Parking < ActiveRecord::Base
                         }
   validates :kind, inclusion: { in: KIND_TYPES }
 
-  scope :public_parkings, -> { where(kind: 'public') }
+  scope :public_parkings, -> { where.not(kind: 'private') }
   scope :private_parkings, -> { where(kind: 'private') }
   scope :by_day_price, -> (from_price, to_price) do
     where('day_price BETWEEN ? AND ?', (from_price || 0), (to_price || Float::MAX))
@@ -39,16 +39,17 @@ class Parking < ActiveRecord::Base
   def self.search(params)
     parkings = Parking.all
 
-    if params[:kind_private].present?
+    if params[:kind_private].present? && params[:kind_public].present?
+      parkings = parkings.private_parkings + parkings.public_parkings
+    elsif params[:kind_private].present?
+      parkings = parkings.private_parkings
+    elsif params[:kind_public].present?
       parkings = parkings.public_parkings
     end
-    if params[:kind_public].present?
-      parkings = parkings.private_parkings
-    end
-    if params[:day_price_start_range].present? || params[:day_price_end_range].present?
+    if params[:day_price_start_range].presence || params[:day_price_end_range].presence
       parkings = parkings.by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
     end
-    if params[:hour_price_start_range].present? || params[:hour_price_end_range].present?
+    if params[:hour_price_start_range].presence || params[:hour_price_end_range].presence
       parkings = parkings.by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
     end
     if params[:city].present?
