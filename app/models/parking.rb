@@ -33,7 +33,7 @@ class Parking < ActiveRecord::Base
   private
 
   def finish_rental
-    self.place_rents.finish
+    place_rents.unfinished.each(&:finish)
   end
 
   def self.search(params)
