@@ -2,7 +2,14 @@ require 'test_helper'
 
 class ParkingsTest < ActionDispatch::IntegrationTest
   def setup
+    Capybara.reset!
     @parking = parkings(:renoma)
+  end
+
+  def sign_in
+    visit '/session/new'
+    fill_in 'session_email', with: 'steve@jobs.com'
+    click_button 'Sign in'
   end
 
   def fill_in_the_form
@@ -73,6 +80,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user rents a place rent on a parking' do
+    sign_in
     visit '/parkings'
     find('tr', text: 'Wroclaw').click_link 'Rent a place'
     select '2015', from: 'place_rent_start_date_1i'
@@ -111,5 +119,12 @@ class ParkingsTest < ActionDispatch::IntegrationTest
     assert_not has_content? 'Krakow'
     assert_not has_content? '6.00'
     assert_not has_content? '30.00'
+  end
+
+  test 'user rents a place rent on a parking but is not logged in' do
+    visit '/parkings'
+    find('tr', text: 'Wroclaw').click_link 'Rent a place'
+    assert has_content? 'You are not logged in!'
+    assert_not has_content? 'New place rent'
   end
 end

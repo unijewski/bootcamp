@@ -1,5 +1,6 @@
 class CarsController < ApplicationController
-  before_action :find_car, only:[:edit, :update, :destroy]
+  before_action :signed_in?
+  before_action :find_car, only: [:edit, :update, :destroy]
 
   def index
     @cars = current_person.cars
@@ -52,5 +53,11 @@ class CarsController < ApplicationController
 
   def find_car
     @car = current_person.cars.find(params[:id])
+  end
+
+  def signed_in?
+    if current_person.nil?
+      redirect_to new_session_path, alert: 'You are not logged in!'
+    end
   end
 end
