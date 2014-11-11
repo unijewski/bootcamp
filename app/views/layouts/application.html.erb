@@ -8,7 +8,10 @@
 </head>
 <body>
   <%= render 'layouts/flash' %>
-  <p>Welcome, <%= current_person.full_name %> |
+  <p>
+  <% if current_person %>
+    Welcome, <%= current_person.full_name %> |
+  <% end %>
   <%= link_to 'Cars', cars_path %> |
     <%= link_to 'Parkings', parkings_path %> |
     <%= link_to 'Place rents', place_rents_path %>

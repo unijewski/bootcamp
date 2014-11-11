@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
 
   def current_person
-    Person.first
+    Person.find_by(id: session[:id])
   end
 end
