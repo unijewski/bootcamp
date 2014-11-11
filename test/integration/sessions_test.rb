@@ -5,15 +5,26 @@ class SessionsTest < ActionDispatch::IntegrationTest
     Capybara.reset!
   end
 
-  test 'user logs in' do
+  def sign_in
     visit '/session/new'
     fill_in 'session_email', with: 'steve@jobs.com'
     click_button 'Sign in'
+  end
+
+  test 'user logs in' do
+    sign_in
     assert has_content? 'Welcome, Steve Jobs'
   end
 
   test 'user is not logged in' do
     visit '/'
     assert_not has_content? 'Welcome, Steve Jobs'
+  end
+
+  test 'user logs out' do
+    sign_in
+    visit '/'
+    click_link 'Logout'
+    assert has_content? 'You are logged out!'
   end
 end
