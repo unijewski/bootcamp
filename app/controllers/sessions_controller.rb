@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
   def sign_in(person, account)
     if person && account
       session[:id] = person.id
-      redirect_to root_path, notice: 'Welcome!'
+      redirect_back_or root_path
+      flash[:notice] = 'Welcome!'
     else
       flash.now[:alert] = 'Invalid email or password!'
       render 'new'

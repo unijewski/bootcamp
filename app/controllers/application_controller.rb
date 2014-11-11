@@ -12,7 +12,13 @@ class ApplicationController < ActionController::Base
 
   def require_logged_person
     if current_person.nil?
+      session[:return_to] = request.url if request.get?
       redirect_to new_session_path, alert: 'You are not logged in!'
     end
+  end
+
+  def redirect_back_or(default)
+    redirect_to(session[:return_to] || default)
+    session.delete(:return_to)
   end
 end

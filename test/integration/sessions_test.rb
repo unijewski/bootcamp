@@ -27,7 +27,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
     visit '/'
     click_link 'Sign out'
     assert has_content? 'You are logged out!'
-    assert has_content? 'Listing parking'
+    assert has_content? 'Listing parkings'
   end
 
   test 'user logs in with invalid email' do
@@ -46,5 +46,18 @@ class SessionsTest < ActionDispatch::IntegrationTest
     click_button 'Sign in'
     assert has_content? 'Invalid email or password!'
     assert has_content? 'New session'
+  end
+
+  test 'users logs in directly from the form' do
+    sign_in
+    assert has_content? 'Listing parkings'
+  end
+
+  test 'users logs in from another location' do
+    visit '/cars'
+    fill_in 'session_email', with: 'steve@jobs.com'
+    fill_in 'session_password', with: 'secret123'
+    click_button 'Sign in'
+    assert current_path == '/cars'
   end
 end
