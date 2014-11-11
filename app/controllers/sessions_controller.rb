@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     person_id = Account.find_by(email: params[:session][:email]).try(:person_id)
     person = Person.find_by(id: person_id)
