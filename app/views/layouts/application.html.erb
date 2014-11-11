@@ -16,6 +16,7 @@
     <%= link_to 'Place rents', place_rents_path if current_person %>
   <% else %>
     <%= link_to 'Sign in', new_session_path %> |
+    <%= link_to 'Sign up', new_account_path %> |
     <%= link_to 'Parkings', parkings_path %>
   <% end %>
   </p>
