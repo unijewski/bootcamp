@@ -33,7 +33,7 @@ class Parking < ActiveRecord::Base
   private
 
   def finish_rental
-    self.place_rents.unfinished.each { |place_rent| place_rent.update(end_date: Time.now) }
+    self.place_rents.finish
   end
 
   def self.search(params)

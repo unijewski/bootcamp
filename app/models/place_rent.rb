@@ -12,6 +12,10 @@ class PlaceRent < ActiveRecord::Base
     self.price = (day_price * days_spent) + (hour_price * hours_spent)
   end
 
+  def self.finish
+    unfinished.each { |place_rent| place_rent.update(end_date: Time.now) }
+  end
+
   private
 
   def day_price
