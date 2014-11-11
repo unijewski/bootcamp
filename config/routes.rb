@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
   resources :cars
   resources :place_rents, only: [:index, :show]
+  resources :sessions
 
   root 'parkings#index'
   # The priority is based upon order of creation: first created -> highest priority.
