@@ -58,43 +58,30 @@ class ParkingTest < ActiveSupport::TestCase
   end
 
   test 'when we query about public parkings' do
-    parkings = Parking.public_parkings
-    assert_equal 1, parkings.size
-    assert_equal 300, parkings.first.places
-    assert_equal 6.00, parkings.first.hour_price
-    assert_equal 30.00, parkings.first.day_price
-    assert_equal 'public', parkings.first.kind
+    parking = parkings(:renoma2)
+    parkings = Parking.public_parkings.order(:id)
+    assert_equal [parking], parkings
   end
 
   test 'when we query about private parkings' do
     parkings = Parking.private_parkings
-    assert_equal 1, parkings.size
-    assert_equal 600, parkings.first.places
-    assert_equal 3.00, parkings.first.hour_price
-    assert_equal 25.00, parkings.first.day_price
-    assert_equal 'private', parkings.first.kind
+    assert_equal [@parking], parkings
   end
 
   test 'when we query about parkings by day price' do
-    parkings = Parking.by_day_price(20, 50)
-    assert_equal 2, parkings.size
-    assert_equal [300, 600], parkings.map(&:places)
-    assert_equal ['public', 'private'], parkings.map(&:kind)
+    parking2 = parkings(:renoma2)
+    parkings = Parking.by_day_price(20, 50).order(:id)
+    assert_equal [parking2, @parking], parkings
   end
 
   test 'when we query about parkings by hour price' do
+    parking2 = parkings(:renoma2)
     parkings = Parking.by_hour_price(1, 10)
-    assert_equal 2, parkings.size
-    assert_equal [300, 600], parkings.map(&:places)
-    assert_equal ['public', 'private'], parkings.map(&:kind)
+    assert_equal [parking2, @parking], parkings
   end
 
   test 'when we query about parkings by city' do
     parkings = Parking.by_city('Wroclaw')
-    assert_equal 1, parkings.size
-    assert_equal 600, parkings.first.places
-    assert_equal 3.00, parkings.first.hour_price
-    assert_equal 25.00, parkings.first.day_price
-    assert_equal 'private', parkings.first.kind
+    assert_equal [@parking], parkings
   end
 end
