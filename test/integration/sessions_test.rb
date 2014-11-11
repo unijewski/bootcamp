@@ -48,12 +48,12 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert has_content? 'New session'
   end
 
-  test 'users logs in directly from the form' do
+  test 'user logs in directly from the form' do
     sign_in
     assert has_content? 'Listing parkings'
   end
 
-  test 'users logs in from another location' do
+  test 'user logs in from another location' do
     visit '/cars'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'

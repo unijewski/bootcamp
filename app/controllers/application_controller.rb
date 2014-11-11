@@ -21,4 +21,15 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)
   end
+
+  def sign_in(account)
+    if account
+      session[:id] = account.person.id
+      redirect_back_or root_path
+      flash[:notice] = 'Welcome!'
+    else
+      flash.now[:alert] = 'Invalid email or password!'
+      render 'new'
+    end
+  end
 end
