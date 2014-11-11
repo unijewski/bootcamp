@@ -8,7 +8,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   def sign_in
     visit '/session/new'
     fill_in 'session_email', with: 'steve@jobs.com'
-    fill_in 'session_password', with: 'password'
+    fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
   end
 
@@ -25,7 +25,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   test 'user logs out' do
     sign_in
     visit '/'
-    click_link 'Logout'
+    click_link 'Sign out'
     assert has_content? 'You are logged out!'
     assert has_content? 'Listing parking'
   end

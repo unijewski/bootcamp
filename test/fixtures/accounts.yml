@@ -3,3 +3,4 @@
 steve_account:
   email: steve@jobs.com
   person: steve
+  password_digest: <%= BCrypt::Password.create('secret123') %>
