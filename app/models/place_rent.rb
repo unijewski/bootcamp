@@ -9,7 +9,7 @@ class PlaceRent < ActiveRecord::Base
   scope :unfinished, -> { where('end_date > ?', Time.now) }
 
   def calculate_price
-    self.price = (day_price * day_spent) + (hour_price * hours_spent)
+    self.price = (day_price * days_spent) + (hour_price * hours_spent)
   end
 
   private
@@ -22,7 +22,7 @@ class PlaceRent < ActiveRecord::Base
     parking.hour_price
   end
 
-  def day_spent
+  def days_spent
     (end_date - start_date).to_i / 1.day
   end
 
