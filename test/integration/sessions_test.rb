@@ -8,6 +8,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   def sign_in
     visit '/session/new'
     fill_in 'session_email', with: 'steve@jobs.com'
+    fill_in 'session_password', with: 'password'
     click_button 'Sign in'
   end
 
