@@ -29,4 +29,22 @@ class SessionsTest < ActionDispatch::IntegrationTest
     assert has_content? 'You are logged out!'
     assert has_content? 'Listing parking'
   end
+
+  test 'user logs in with invalid email' do
+    visit '/session/new'
+    fill_in 'session_email', with: 'steve@steve.com'
+    fill_in 'session_password', with: 'secret123'
+    click_button 'Sign in'
+    assert has_content? 'Invalid email or password!'
+    assert has_content? 'New session'
+  end
+
+  test 'user logs in with invalid password' do
+    visit '/session/new'
+    fill_in 'session_email', with: 'steve@jobs.com'
+    fill_in 'session_password', with: 'secret'
+    click_button 'Sign in'
+    assert has_content? 'Invalid email or password!'
+    assert has_content? 'New session'
+  end
 end

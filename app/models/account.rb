@@ -7,4 +7,8 @@ class Account < ActiveRecord::Base
                     format: { with: EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
   has_secure_password
+
+  def self.authenticate(email, password)
+    Account.find_by(email: email).try(:authenticate, password)
+  end
 end

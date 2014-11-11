@@ -3,15 +3,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    account = Account.find_by(email: params[:session][:email])
-    person = Person.find_by(id: account.person_id)
+    person_id = Account.find_by(email: params[:session][:email]).try(:person_id)
+    person = Person.find_by(id: person_id)
+    account = Account.authenticate(params[:session][:email], params[:session][:password])
 
-    if person
-      log_in(person)
-      redirect_to parkings_path, notice: 'Welcome!'
-    else
-      redirect_to new_session_path, alert: 'Person not found!'
-    end
+    sign_in(person, account)
   end
 
   def destroy
@@ -21,7 +17,13 @@ class SessionsController < ApplicationController
 
   private
 
-  def log_in(person)
-    session[:id] = person.id
+  def sign_in(person, account)
+    if person && account
+      session[:id] = person.id
+      redirect_to root_path, notice: 'Welcome!'
+    else
+      flash.now[:alert] = 'Invalid email or password!'
+      render 'new'
+    end
   end
 end

@@ -14,4 +14,14 @@ class AccountTest < ActiveSupport::TestCase
     assert_not @account.valid?
     assert @account.errors.has_key?(:email)
   end
+
+  test 'when we execute authenticate method with valid parameters' do
+    account = Account.authenticate(@account.email, 'secret123')
+    assert_equal @account, account
+  end
+
+  test 'when we execute authenticate method with invalid parameters' do
+    account = Account.authenticate(@account.email, 'secret')
+    assert_equal false, account
+  end
 end

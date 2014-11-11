@@ -9,6 +9,7 @@ class CarsTest < ActionDispatch::IntegrationTest
   def sign_in
     visit '/session/new'
     fill_in 'session_email', with: 'steve@jobs.com'
+    fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
   end
 
