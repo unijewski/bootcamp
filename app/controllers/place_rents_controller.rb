@@ -1,5 +1,5 @@
 class PlaceRentsController < ApplicationController
-  before_action :signed_in?
+  before_action :require_logged_person
 
   def index
     @place_rents = PlaceRent.all
@@ -34,11 +34,5 @@ class PlaceRentsController < ApplicationController
 
   def find_parking
     @parking = Parking.find(params[:parking_id])
-  end
-
-  def signed_in?
-    if current_person.nil?
-      redirect_to new_session_path, alert: 'You are not logged in!'
-    end
   end
 end
