@@ -58,6 +58,6 @@ class SessionsTest < ActionDispatch::IntegrationTest
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
-    assert current_path == '/cars'
+    assert_equal current_path, '/cars'
   end
 end
