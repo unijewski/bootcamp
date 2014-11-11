@@ -10,7 +10,7 @@
   <%= render 'layouts/flash' %>
   <p>
   <% if current_person %>
-    Welcome, <%= current_person.full_name %> |
+    Welcome, <%= current_person.full_name %> | <%= link_to 'Logout', session_path(session), method: :delete %> |
   <% end %>
   <%= link_to 'Cars', cars_path %> |
     <%= link_to 'Parkings', parkings_path %> |

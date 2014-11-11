@@ -26,5 +26,6 @@ class SessionsTest < ActionDispatch::IntegrationTest
     visit '/'
     click_link 'Logout'
     assert has_content? 'You are logged out!'
+    assert has_content? 'Listing parking'
   end
 end

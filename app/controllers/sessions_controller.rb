@@ -14,6 +14,11 @@ class SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session.delete(:id)
+    redirect_to root_path, notice: 'You are logged out!'
+  end
+
   private
 
   def log_in(person)
