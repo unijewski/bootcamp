@@ -40,6 +40,8 @@ gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'haml-rails'
 
+gem 'i18n'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
