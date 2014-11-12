@@ -21,10 +21,6 @@ class PlaceRent < ActiveRecord::Base
     identifier
   end
 
-  def self.find_by_param(input)
-    find_by_identifier(input)
-  end
-
   private
 
   def day_price

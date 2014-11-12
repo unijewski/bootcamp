@@ -1,4 +1,3 @@
-require 'pry'
 class PlaceRentsController < ApplicationController
   before_action :require_logged_person
 
@@ -7,7 +6,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def show
-    @place_rent = PlaceRent.find_by_param(params[:id])
+    @place_rent = PlaceRent.find_by(identifier: params[:id])
   end
 
   def new
@@ -31,7 +30,7 @@ class PlaceRentsController < ApplicationController
   private
 
   def identifier
-    (0...8).map { (65 + rand(26)).chr }.join
+    SecureRandom.uuid
   end
 
   def place_rent_params
