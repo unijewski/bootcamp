@@ -6,14 +6,25 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
 
+  def set_locale
+    I18n.locale = extract_locale_from_accept_language_header
+  end
+
   private
 
   def default_url_options(options = {})
     { locale: I18n.locale }
   end
 
-  def set_locale
-    I18n.locale = params[:locale] || I18n.default_locale
+  def extract_locale_from_accept_language_header
+    locales = I18n.available_locales.map(&:to_s)
+    language = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first if request.env['HTTP_ACCEPT_LANGUAGE']
+
+    if locales.include?(language)
+      language
+    else
+      I18n.default_locale
+    end
   end
 
   def current_person
