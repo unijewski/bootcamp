@@ -42,6 +42,7 @@ class Parking < ActiveRecord::Base
     if params[:city].present?
       parkings = parkings.by_city(params[:city])
     end
+
     if params[:kind_private].present? && params[:kind_public].present?
       parkings = parkings.private_parkings + parkings.public_parkings
     elsif params[:kind_private].present?
@@ -49,12 +50,15 @@ class Parking < ActiveRecord::Base
     elsif params[:kind_public].present?
       parkings = parkings.public_parkings
     end
+
     if params[:day_price_start_range].presence || params[:day_price_end_range].presence
       parkings = parkings.by_day_price(params[:day_price_start_range], params[:hour_price_end_range])
     end
+
     if params[:hour_price_start_range].presence || params[:hour_price_end_range].presence
       parkings = parkings.by_hour_price(params[:hour_price_start_range], params[:hour_price_end_range])
     end
+
     parkings
   end
 end
