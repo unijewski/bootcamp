@@ -10,15 +10,23 @@
   <%= render 'layouts/flash' %>
   <p>
   <% if current_person %>
-    <%= t(:welcome) %> <%= current_person.full_name %> | <%= link_to t(:sign_out), session_path(session), method: :delete %> |
+    <%= t(:welcome) %> <%= current_person.full_name %> |
+    <%= link_to t(:sign_out), session_path(session), method: :delete %> |
     <%= link_to t(:cars), cars_path if current_person %> |
     <%= link_to t(:parkings), parkings_path %> |
-    <%= link_to t(:place_rents), place_rents_path if current_person %>
+    <%= link_to t(:place_rents), place_rents_path if current_person %> |
   <% else %>
     <%= link_to t(:sign_in), login_path %> |
     <%= link_to t(:sign_up), register_path %> |
-    <%= link_to t(:parkings), parkings_path %>
+    <%= link_to t(:parkings), parkings_path %> |
   <% end %>
+
+  <% if I18n.locale != I18n.default_locale %>
+    <%= link_to 'English', locale: 'en'%>
+  <% else %>
+    <%= link_to 'Polski', locale: 'pl'%>
+  <%end%>
+
   </p>
 
   <%= yield %>
