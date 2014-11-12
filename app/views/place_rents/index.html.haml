@@ -1,0 +1,15 @@
+%h1 Listing place rents
+%table
+  %tr
+    %th Start date
+    %th End date
+    %th Car
+    %th Parking
+    %th
+  - @place_rents.each do |place_rent|
+    %tr
+      %td= place_rent.start_date.strftime('%d.%m.%Y, %H:%M')
+      %td= place_rent.end_date.strftime('%d.%m.%Y, %H:%M')
+      %td= link_to 'Car', car_path(place_rent.car)
+      %td= link_to 'Parking', parking_path(place_rent.parking) if place_rent.parking
+      %td= link_to 'Show', place_rent

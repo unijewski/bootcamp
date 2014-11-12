@@ -1,0 +1,18 @@
+%h1 Listing cars
+= link_to 'New car', new_car_path
+%br/
+%br/
+%table
+  %tr
+    %th Registration number
+    %th Model
+    %th
+    %th
+    %th
+  - @cars.each do |car|
+    %tr
+      %td= car.registration_number
+      %td= car.model
+      %td= link_to 'Show', car
+      %td= link_to 'Edit', edit_car_path(car)
+      %td= link_to 'Remove', car, method: :delete, data: { confirm: 'Are you sure?' }
