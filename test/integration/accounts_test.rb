@@ -5,7 +5,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
     Capybara.reset!
   end
 
-  def errors
+  def assert_rendered_form_with_errors
     assert_equal '/accounts', current_path
     assert has_content? 'Oooups! Something went wrong'
     assert has_content? 'New account'
@@ -17,7 +17,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Create Account'
-    errors
+    assert_rendered_form_with_errors
     assert has_content? 'Person first name can\'t be blank'
   end
 
@@ -27,7 +27,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
     click_button 'Create Account'
-    errors
+    assert_rendered_form_with_errors
     assert has_content? 'Email can\'t be blank'
     assert has_content? 'Email is invalid'
   end
@@ -37,7 +37,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
     fill_in 'First name', with: 'Steve'
     fill_in 'Email', with: 'foo@bar.com'
     click_button 'Create Account'
-    errors
+    assert_rendered_form_with_errors
     assert has_content? 'Password can\'t be blank'
   end
 
@@ -48,7 +48,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'drowssap'
     click_button 'Create Account'
-    errors
+    assert_rendered_form_with_errors
     assert has_content? 'Password confirmation doesn\'t match Password'
   end
 
