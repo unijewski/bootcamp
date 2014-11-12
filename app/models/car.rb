@@ -4,11 +4,7 @@ class Car < ActiveRecord::Base
 
   validates :registration_number, :model, :owner, presence: true
 
-  def slug
-    model.downcase.gsub(' ', '-')
-  end
-
   def to_param
-    "#{id}-#{slug}"
+    "#{id}-#{model.parameterize}"
   end
 end
