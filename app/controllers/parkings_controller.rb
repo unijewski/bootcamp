@@ -22,7 +22,7 @@ class ParkingsController < ApplicationController
     if @parking.save
       redirect_to @parking, notice: t(:created)
     else
-      flash[:alert] = t :error
+      flash[:alert] = t(:error)
       render 'new'
     end
   end
