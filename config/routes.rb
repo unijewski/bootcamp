@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :parkings do
-    resources :place_rents, only: [:new, :create]
+  scope '/:locale' do
+    resources :parkings do
+      resources :place_rents, only: [:new, :create]
+    end
   end
   resources :cars
   resources :place_rents, only: [:index, :show]
