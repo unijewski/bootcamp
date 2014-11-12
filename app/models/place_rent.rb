@@ -5,6 +5,7 @@ class PlaceRent < ActiveRecord::Base
   belongs_to :parking
 
   validates :start_date, :end_date, :parking, :car, presence: true
+  validates :identifier, uniqueness: true
 
   scope :unfinished, -> { where('end_date > ?', Time.now) }
 
@@ -14,6 +15,14 @@ class PlaceRent < ActiveRecord::Base
 
   def finish
     update(end_date: Time.now)
+  end
+
+  def to_param
+    identifier
+  end
+
+  def self.find_by_param(input)
+    find_by_identifier(input)
   end
 
   private

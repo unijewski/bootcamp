@@ -1,3 +1,4 @@
+require 'pry'
 class PlaceRentsController < ApplicationController
   before_action :require_logged_person
 
@@ -6,7 +7,7 @@ class PlaceRentsController < ApplicationController
   end
 
   def show
-    @place_rent = PlaceRent.find(params[:id])
+    @place_rent = PlaceRent.find_by_param(params[:id])
   end
 
   def new
@@ -16,6 +17,7 @@ class PlaceRentsController < ApplicationController
   def create
     @place_rent = PlaceRent.new(place_rent_params)
     @place_rent.parking = find_parking
+    @place_rent.identifier = identifier
     @place_rent.calculate_price
 
     if @place_rent.save
@@ -27,6 +29,10 @@ class PlaceRentsController < ApplicationController
   end
 
   private
+
+  def identifier
+    (0...8).map { (65 + rand(26)).chr }.join
+  end
 
   def place_rent_params
     params.require(:place_rent).permit(:start_date, :end_date, :car_id)
