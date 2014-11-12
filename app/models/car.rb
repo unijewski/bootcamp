@@ -3,4 +3,8 @@ class Car < ActiveRecord::Base
   has_many :place_rents
 
   validates :registration_number, :model, :owner, presence: true
+
+  def to_param
+    "#{id}-#{model}"
+  end
 end
