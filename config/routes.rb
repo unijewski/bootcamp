@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   resource :session
   resources :accounts
 
+  match '/register', to: 'accounts#new', via: 'get'
+  match '/login', to: 'sessions#new', via: 'get'
+
   root 'parkings#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
