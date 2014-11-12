@@ -7,71 +7,71 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   def sign_in
-    visit '/session/new'
+    visit '/login'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
   end
 
   def fill_in_the_form
-    fill_in 'Places', with: '100'
-    select 'private', from: 'Kind'
-    fill_in 'Hour price', with: '3.50'
-    fill_in 'Day price', with: '25.00'
-    fill_in 'City', with: 'City'
-    fill_in 'Street', with: 'Street'
-    fill_in 'Zip code', with: '12-345'
+    fill_in 'parking_places', with: '100'
+    select 'private', from: 'parking_kind'
+    fill_in 'parking_hour_price', with: '3.50'
+    fill_in 'parking_day_price', with: '25.00'
+    fill_in 'parking_address_attributes_city', with: 'City'
+    fill_in 'parking_address_attributes_street', with: 'Street'
+    fill_in 'parking_address_attributes_zip_code', with: '12-345'
   end
 
   test 'user opens parkings index' do
-    visit '/parkings'
-    assert has_content? 'Listing parkings'
+    visit '/en/parkings'
+    assert has_content? 'Parkings'
   end
 
   test 'user opens parking details' do
-    visit '/parkings'
+    visit '/en/parkings'
     find('tr', text: 'Wroclaw').click_link 'Show'
-    assert has_content? 'Places: 600'
-    assert has_content? 'Kind: private'
-    assert has_content? 'Hour price: 3.0'
-    assert has_content? 'Day price: 25.0'
-    assert has_content? 'City: 50-950 Wroclaw'
-    assert has_content? 'Street: Swidnicka'
-    assert has_content? 'Owner: Steve Jobs'
+    assert has_content? 'Places 600'
+    assert has_content? 'Kind private'
+    assert has_content? 'Hour price 3.0'
+    assert has_content? 'Day price 25.0'
+    assert has_content? 'City 50-950 Wroclaw'
+    assert has_content? 'Street Swidnicka'
+    assert has_content? 'Owner Steve Jobs'
   end
 
   test 'user adds a new parking' do
-    visit '/parkings'
+    visit '/en/parkings'
     click_link 'New parking'
     fill_in_the_form
-    click_button 'Create Parking'
+    click_button 'Execute'
     assert has_content? 'Parking details'
-    assert has_content? 'Places: 100'
-    assert has_content? 'Kind: private'
-    assert has_content? 'Hour price: 3.5'
-    assert has_content? 'Day price: 25.0'
-    assert has_content? 'City: 12-345 City'
-    assert has_content? 'Street: Street'
+    assert has_content? 'Places 100'
+    assert has_content? 'Kind private'
+    assert has_content? 'Hour price 3.5'
+    assert has_content? 'Day price 25.0'
+    assert has_content? 'City 12-345 City'
+    assert has_content? 'Street Street'
     assert has_content? 'The parking has been created!'
   end
 
   test 'user edits a parking' do
-    visit '/parkings'
+    visit '/en/parkings'
     find('tr', text: 'Wroclaw').click_link 'Edit'
     fill_in_the_form
-    click_button 'Update Parking'
+    click_button 'Execute'
     assert has_content? 'Parking details'
-    assert has_content? 'Places: 100'
-    assert has_content? 'Kind: private'
-    assert has_content? 'Hour price: 3.5'
-    assert has_content? 'Day price: 25.0'
-    assert has_content? 'City: 12-345 City'
-    assert has_content? 'Street: Street'
+    assert has_content? 'Places 100'
+    assert has_content? 'Kind private'
+    assert has_content? 'Hour price 3.5'
+    assert has_content? 'Day price 25.0'
+    assert has_content? 'City 12-345 City'
+    assert has_content? 'Street Street'
     assert has_content? 'The parking has been updated!'
   end
 
   test 'user removes a parking' do
-    visit '/parkings'
+    visit '/en/parkings'
     find('tr', text: 'Wroclaw').click_link 'Remove'
     assert has_content? 'The parking has been deleted!'
     assert_not has_content? 'Wroclaw'
@@ -82,7 +82,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   test 'user rents a place rent on a parking' do
     sign_in
-    visit '/parkings'
+    visit '/en/parkings'
     find('tr', text: 'Wroclaw').click_link 'Rent a place'
     select '2015', from: 'place_rent_start_date_1i'
     select 'January', from: 'place_rent_start_date_2i'
@@ -103,7 +103,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user fills in whole search form' do
-    visit '/parkings'
+    visit '/en/parkings'
     check 'kind_private'
     fill_in 'day_price_start_range', with: '15.00'
     fill_in 'day_price_end_range', with: '25.00'
@@ -123,7 +123,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user rents a place rent on a parking but is not logged in' do
-    visit '/parkings'
+    visit '/en/parkings'
     find('tr', text: 'Wroclaw').click_link 'Rent a place'
     assert has_content? 'You are not logged in!'
     assert_not has_content? 'New place rent'

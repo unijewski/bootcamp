@@ -1,14 +1,18 @@
-%h1 Listing parkings
+%h1= t :parkings
 = render 'search'
-= link_to 'New parking', new_parking_path
+= link_to t(:new_parking), new_parking_path
 %br/
 %br/
 %table
   %tr
-    %th City
-    %th Places
-    %th Hour price
-    %th Day price
+    %th
+      = t :city
+    %th
+      = t :places
+    %th
+      = t :hour_price
+    %th
+      = t :day_price
     %th
     %th
     %th
@@ -19,7 +23,7 @@
       %td= parking.places
       %td= parking.hour_price
       %td= parking.day_price
-      %td= link_to 'Show', parking
-      %td= link_to 'Edit', edit_parking_path(parking)
-      %td= link_to 'Remove', parking, method: :delete, data: { confirm: 'Are you sure?' }
-      %td= link_to 'Rent a place', new_parking_place_rent_path(parking)
+      %td= link_to t(:show), parking
+      %td= link_to t(:edit), edit_parking_path(parking)
+      %td= link_to t(:remove), parking, method: :delete, data: { confirm: t(:confirmation) }
+      %td= link_to t(:rent_a_place), new_parking_place_rent_path(parking)

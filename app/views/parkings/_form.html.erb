@@ -11,43 +11,43 @@
   </div>
   <% end %>
   <p>
-    <%= f.label :places %><br>
+    <%= f.label t :places %><br>
     <%= f.text_field :places %>
   </p>
 
   <p>
-    <%= f.label :kind %><br>
+    <%= f.label t :kind %><br>
     <%= f.select :kind, Parking::KIND_TYPES %>
   </p>
 
   <p>
-    <%= f.label :hour_price %><br>
+    <%= f.label t :hour_price %><br>
     <%= f.text_field :hour_price %>
   </p>
 
   <p>
-    <%= f.label :day_price %><br>
+    <%= f.label t :day_price %><br>
     <%= f.text_field :day_price %>
   </p>
 
   <%= f.fields_for :address do |address_builder| %>
     <p>
-      <%= address_builder.label :city %><br>
+      <%= address_builder.label t :city %><br>
       <%= address_builder.text_area :city %>
     </p>
 
     <p>
-      <%= address_builder.label :street %><br>
+      <%= address_builder.label t :street %><br>
       <%= address_builder.text_area :street %>
     </p>
 
     <p>
-      <%= address_builder.label :zip_code %><br>
+      <%= address_builder.label t :zip_code %><br>
       <%= address_builder.text_field :zip_code %>
     </p>
   <% end %>
 
   <p>
-    <%= f.submit %>
+    <%= f.submit t :execute %>
   </p>
 <% end %>

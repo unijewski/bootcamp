@@ -6,7 +6,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   def sign_in
-    visit '/session/new'
+    visit '/login'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
@@ -18,20 +18,20 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user is not logged in' do
-    visit '/'
+    visit '/en/parkings'
     assert_not has_content? 'Welcome, Steve Jobs'
   end
 
   test 'user logs out' do
     sign_in
-    visit '/'
+    visit '/en/parkings'
     click_link 'Sign out'
     assert has_content? 'You are logged out!'
-    assert has_content? 'Listing parkings'
+    assert has_content? 'Parkings'
   end
 
   test 'user logs in with invalid email' do
-    visit '/session/new'
+    visit '/login'
     fill_in 'session_email', with: 'steve@steve.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
@@ -40,7 +40,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user logs in with invalid password' do
-    visit '/session/new'
+    visit '/login'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret'
     click_button 'Sign in'
@@ -50,7 +50,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
 
   test 'user logs in directly from the form' do
     sign_in
-    assert has_content? 'Listing parkings'
+    assert has_content? 'Parkings'
   end
 
   test 'user logs in from another location' do

@@ -61,7 +61,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
     fill_in 'Password confirmation', with: 'password'
     click_button 'Create Account'
     assert has_content? 'Welcome'
-    assert has_content? 'Listing parking'
+    assert has_content? 'Parkings'
     assert_equal '/', current_path
   end
 end

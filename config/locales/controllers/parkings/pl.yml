@@ -1,0 +1,6 @@
+pl:
+  not_found: Nie znaleziono parkingu!
+  created: Parking został utworzony!
+  error: Ups! Coś poszło nie tak
+  updated: Parking został zaktualizowany!
+  deleted: Parking został usunięty!

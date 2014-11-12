@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  scope '/:locale' do
+  scope '/:locale', locale: /en|pl/ do
     resources :parkings do
       resources :place_rents, only: [:new, :create]
     end

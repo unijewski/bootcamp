@@ -8,7 +8,7 @@ class ParkingsController < ApplicationController
   def show
     find_parking
   rescue ActiveRecord::RecordNotFound
-    redirect_to parkings_path, alert: 'Parking not found!'
+    redirect_to parkings_path, alert: t(:not_found)
   end
 
   def new
@@ -20,9 +20,9 @@ class ParkingsController < ApplicationController
     @parking = Parking.new(parking_params)
 
     if @parking.save
-      redirect_to @parking, notice: 'The parking has been created!'
+      redirect_to @parking, notice: t(:created)
     else
-      flash[:alert] = 'Oooups! Something went wrong'
+      flash[:alert] = t :error
       render 'new'
     end
   end
@@ -34,9 +34,9 @@ class ParkingsController < ApplicationController
   def update
     if @parking.update(parking_params)
       redirect_to @parking
-      flash[:notice] = 'The parking has been updated!'
+      flash[:notice] = t(:updated)
     else
-      flash[:alert] = 'Oooups! Something went wrong'
+      flash[:alert] = t(:error)
       render 'edit'
     end
   end
@@ -44,7 +44,7 @@ class ParkingsController < ApplicationController
   def destroy
     @parking.destroy
 
-    redirect_to parkings_path, notice: 'The parking has been deleted!'
+    redirect_to parkings_path, notice: t(:deleted)
   end
 
   private
