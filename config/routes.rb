@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   resource :session
   resources :accounts
 
-  get '/register', to: 'accounts#new'
-  get '/login', to: 'sessions#new'
+  get '/register', to: 'accounts#new', as: :register
+  get '/login', to: 'sessions#new', as: :login
 
   root 'parkings#index'
   # The priority is based upon order of creation: first created -> highest priority.
