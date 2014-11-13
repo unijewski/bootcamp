@@ -48,7 +48,7 @@ class CarsController < ApplicationController
   private
 
   def car_params
-    params.require(:car).permit(:registration_number, :model)
+    params.require(:car).permit(:registration_number, :model, :image)
   end
 
   def find_car
