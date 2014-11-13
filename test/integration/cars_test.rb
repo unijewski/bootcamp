@@ -65,7 +65,6 @@ class CarsTest < ActionDispatch::IntegrationTest
     visit '/en/cars'
     click_link 'Edit'
     fill_in_the_form
-    assert has_content? 'Remove image'
     click_button 'Update Car'
     assert has_content? 'Registration number: KR 1234A'
     assert has_content? 'Model: BMW'
