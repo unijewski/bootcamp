@@ -1,11 +1,11 @@
 <h1><%= t(:parking_details) %></h1>
 <ul>
-  <li><b><%= t(:places) %></b> <%= @parking.places %></li>
-  <li><b><%= t(:kind) %></b> <%= @parking.kind %></li>
-  <li><b><%= t(:hour_price) %></b> <%= @parking.hour_price %></li>
-  <li><b><%= t(:day_price) %></b> <%= @parking.day_price %></li>
-  <li><b><%= t(:city) %></b> <%= @parking.address.try(:zip_code) %> <%= @parking.address.try(:city) %> </li>
-  <li><b><%= t(:street) %></b> <%= @parking.address.try(:street) %></li>
+  <li><b><%= Parking.human_attribute_name(:places) %></b> <%= @parking.places %></li>
+  <li><b><%= Parking.human_attribute_name(:kind) %></b> <%= @parking.kind %></li>
+  <li><b><%= Parking.human_attribute_name(:hour_price) %></b> <%= @parking.hour_price %></li>
+  <li><b><%= Parking.human_attribute_name(:day_price) %></b> <%= @parking.day_price %></li>
+  <li><b><%= Address.human_attribute_name(:city) %></b> <%= @parking.address.try(:zip_code) %> <%= @parking.address.try(:city) %> </li>
+  <li><b><%= Address.human_attribute_name(:street) %></b> <%= @parking.address.try(:street) %></li>
   <li><b><%= t(:owner) %></b> <%= @parking.owner.try(:first_name) %> <%= @parking.owner.try(:last_name) %></li>
 </ul>
 <%= link_to t(:back_to_parkings), parkings_path %>

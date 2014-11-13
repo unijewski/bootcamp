@@ -1,27 +1,22 @@
 en:
-  city: City
-  places: Places
-  hour_price: Hour price
-  day_price: Day price
+  label:
+    city: City
+    day_price_from: Day price from
+    day_price_to: Day price to
+    hour_price_from: Hour price from
+    hour_price_to: Hour price to
+    private: Private
+    public: Public
   new_parking: New parking
   show: Show
   edit: Edit
   remove: Remove
   confirmation: Are you sure?
   rent_a_place: Rent a place
-  private: Private
-  public: Public
-  day_price_from: Day price from
-  day_price_to: Day price to
-  hour_price_from: Hour price from
-  hour_price_to: Hour price to
   search: Search
   parking_details: Parking details
-  kind: Kind
-  street: Street
   owner: Owner
   back_to_parkings: Back to parkings
-  zip_code: Zip code
   execute: Execute
   will_paginate:
     previous_label: Back

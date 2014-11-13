@@ -1,27 +1,22 @@
 pl:
-  city: Miasto
-  places: Miejsc
-  hour_price: Cena za godzinę
-  day_price: Cena za dzień
+  label:
+    city: Miasto
+    day_price_from: Stawka dzienna od
+    day_price_to: Stawka dzienna do
+    hour_price_from: Stawka godzinowa od
+    hour_price_to: Stawka godzinowa do
+    private: Prywatne
+    public: Publiczne
   new_parking: Nowy parking
   show: Pokaż
   edit: Edytuj
   remove: Usuń
   confirmation: Jesteś pewien?
   rent_a_place: Wynajmij miejsce parkingowe
-  private: Prywatne
-  public: Publiczne
-  day_price_from: Stawka dzienna od
-  day_price_to: Stawka dzienna do
-  hour_price_from: Stawka godzinowa od
-  hour_price_to: Stawka godzinowa do
   search: Szukaj
   parking_details: Szczegóły parkingu
-  kind: Rodzaj
-  street: Ulica
   owner: Właściciel
   back_to_parkings: Wróć do parkingów
-  zip_code: Kod pocztowy
   execute: Wykonaj
   will_paginate:
     previous_label: Wróć

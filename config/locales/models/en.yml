@@ -1,0 +1,15 @@
+en:
+  activerecord:
+      models:
+        parking: Parking
+        address: Addres
+      attributes:
+        parking:
+          places: Places
+          kind: Kind
+          hour_price: Hour price
+          day_price: Day price
+        address:
+          city: City
+          street: Street
+          zip_code: Zip code

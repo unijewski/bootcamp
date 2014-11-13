@@ -1,0 +1,15 @@
+pl:
+  activerecord:
+      models:
+        parking: Parking
+        address: Adres
+      attributes:
+        parking:
+          places: Miejsc
+          kind: Rodzaj
+          hour_price: Cena za godzinę
+          day_price: Cena za dzień
+        address:
+          city: Miasto
+          street: Ulica
+          zip_code: Kod pocztowy
