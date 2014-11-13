@@ -14,12 +14,12 @@ class SessionsTest < ActionDispatch::IntegrationTest
 
   test 'user logs in' do
     sign_in
-    assert has_content? 'Welcome, Steve Jobs'
+    assert has_content? 'Welcome Steve Jobs'
   end
 
   test 'user is not logged in' do
     visit '/en/parkings'
-    assert_not has_content? 'Welcome, Steve Jobs'
+    assert_not has_content? 'Welcome Steve Jobs'
   end
 
   test 'user logs out' do
