@@ -1,10 +1,7 @@
 <% if notice %>
-<p style='font-weight: bold; color: green;'>
-  <%= notice %>
-</p>
+  <p class="alert alert-success" role="alert"><%= notice %></p>
 <% end %>
+
 <% if alert %>
-<p style='font-weight: bold; color: red;'>
-  <%= alert %>
-</p>
+  <p class="alert alert-warning" role="alert"><%= alert %></p>
 <% end %>
