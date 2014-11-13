@@ -44,7 +44,7 @@ class Parking < ActiveRecord::Base
     end
 
     if params[:kind_private].present? && params[:kind_public].present?
-      parkings = parkings.private_parkings + parkings.public_parkings
+      parkings = parkings.all
     elsif params[:kind_private].present?
       parkings = parkings.private_parkings
     elsif params[:kind_public].present?
