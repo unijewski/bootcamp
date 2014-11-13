@@ -6,13 +6,13 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   def assert_rendered_form_with_errors
-    assert_equal '/accounts', current_path
+    assert_equal '/en/accounts', current_path
     assert has_content? 'Oooups! Something went wrong'
     assert has_content? 'New account'
   end
 
   test 'user signs up without a first name' do
-    visit '/accounts/new'
+    visit '/en/register'
     fill_in 'Email', with: 'foo@bar.com'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
@@ -22,7 +22,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user signs up without an email' do
-    visit '/accounts/new'
+    visit '/en/register'
     fill_in 'First name', with: 'Steve'
     fill_in 'Password', with: 'password'
     fill_in 'Password confirmation', with: 'password'
@@ -33,7 +33,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user signs up without passwords' do
-    visit '/accounts/new'
+    visit '/en/register'
     fill_in 'First name', with: 'Steve'
     fill_in 'Email', with: 'foo@bar.com'
     click_button 'Create Account'
@@ -42,7 +42,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user fills in different passwords' do
-    visit '/accounts/new'
+    visit '/en/register'
     fill_in 'First name', with: 'Steve'
     fill_in 'Email', with: 'foo@bar.com'
     fill_in 'Password', with: 'password'
@@ -53,7 +53,7 @@ class AccountsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user signs up with proper data' do
-    visit '/accounts/new'
+    visit '/en/register'
     fill_in 'First name', with: 'Steve'
     fill_in 'Last name', with: 'Works'
     fill_in 'Email', with: 'foo@bar.com'
@@ -62,6 +62,6 @@ class AccountsTest < ActionDispatch::IntegrationTest
     click_button 'Create Account'
     assert has_content? 'Welcome'
     assert has_content? 'Parkings'
-    assert_equal '/', current_path
+    assert_equal '/en', current_path
   end
 end

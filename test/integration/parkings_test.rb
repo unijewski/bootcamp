@@ -7,7 +7,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
   end
 
   def sign_in
-    visit '/login'
+    visit '/en/login'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
@@ -15,7 +15,7 @@ class ParkingsTest < ActionDispatch::IntegrationTest
 
   def fill_in_the_form
     fill_in 'parking_places', with: '100'
-    select 'private', from: 'parking_kind'
+    select 'Private', from: 'parking_kind'
     fill_in 'parking_hour_price', with: '3.50'
     fill_in 'parking_day_price', with: '25.00'
     fill_in 'parking_address_attributes_city', with: 'City'

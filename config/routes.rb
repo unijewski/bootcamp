@@ -3,16 +3,17 @@ Rails.application.routes.draw do
     resources :parkings do
       resources :place_rents, only: [:new, :create]
     end
+    resources :cars
+    get '/login', to: 'sessions#new', as: :login
+    get '/register', to: 'accounts#new', as: :register
+    resources :place_rents, only: [:index, :show]
+    resources :accounts
+    root 'parkings#index'
   end
-  resources :cars
-  resources :place_rents, only: [:index, :show]
+
+  root 'parkings#index', as: nil
   resource :session
-  resources :accounts
 
-  get '/register', to: 'accounts#new', as: :register
-  get '/login', to: 'sessions#new', as: :login
-
-  root 'parkings#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

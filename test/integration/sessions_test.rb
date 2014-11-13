@@ -6,7 +6,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   def sign_in
-    visit '/login'
+    visit '/en/login'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
@@ -31,7 +31,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user logs in with invalid email' do
-    visit '/login'
+    visit '/en/login'
     fill_in 'session_email', with: 'steve@steve.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
@@ -40,7 +40,7 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user logs in with invalid password' do
-    visit '/login'
+    visit '/en/login'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret'
     click_button 'Sign in'
@@ -54,10 +54,10 @@ class SessionsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user logs in from another location' do
-    visit '/cars'
+    visit '/en/cars'
     fill_in 'session_email', with: 'steve@jobs.com'
     fill_in 'session_password', with: 'secret123'
     click_button 'Sign in'
-    assert_equal '/cars', current_path
+    assert_equal '/en/cars', current_path
   end
 end

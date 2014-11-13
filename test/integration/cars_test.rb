@@ -20,7 +20,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test 'user opens cars index' do
     sign_in
-    visit '/cars'
+    visit '/en/cars'
     assert has_content? 'Listing cars'
     assert has_content? 'DW 12345'
     assert has_content? 'BMW 535i'
@@ -28,7 +28,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test 'user opens car details' do
     sign_in
-    visit '/cars'
+    visit '/en/cars'
     click_link 'Show'
     assert has_content? 'Registration number: DW 12345'
     assert has_content? 'Model: BMW 535i'
@@ -36,7 +36,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test 'user adds a new car' do
     sign_in
-    visit '/cars'
+    visit '/en/cars'
     click_link 'New car'
     fill_in_the_form
     click_button 'Create Car'
@@ -47,7 +47,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test 'user edits a car' do
     sign_in
-    visit '/cars'
+    visit '/en/cars'
     click_link 'Edit'
     fill_in_the_form
     click_button 'Update Car'
@@ -58,7 +58,7 @@ class CarsTest < ActionDispatch::IntegrationTest
 
   test 'user removes a car' do
     sign_in
-    visit '/cars'
+    visit '/en/cars'
     click_link 'Remove'
     assert has_content? 'The car has been deleted!'
     assert_not has_content? 'DW 12345'
@@ -66,7 +66,7 @@ class CarsTest < ActionDispatch::IntegrationTest
   end
 
   test 'user opens car index but is not logged in' do
-    visit '/cars'
+    visit '/en/cars'
     assert has_content? 'You are not logged in!'
     assert_not has_content? 'Listing cars'
   end
