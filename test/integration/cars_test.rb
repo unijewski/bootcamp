@@ -16,6 +16,7 @@ class CarsTest < ActionDispatch::IntegrationTest
   def fill_in_the_form
     fill_in 'Registration number', with: 'KR 1234A'
     fill_in 'Model', with: 'BMW'
+    attach_file('Image', File.join(Rails.root, '/test/fixtures/test_ok.png'))
   end
 
   test 'user opens cars index' do
@@ -32,6 +33,7 @@ class CarsTest < ActionDispatch::IntegrationTest
     click_link 'Show'
     assert has_content? 'Registration number: DW 12345'
     assert has_content? 'Model: BMW 535i'
+    assert true, @car.image.present?
   end
 
   test 'user adds a new car' do
@@ -43,6 +45,19 @@ class CarsTest < ActionDispatch::IntegrationTest
     assert has_content? 'Registration number: KR 1234A'
     assert has_content? 'Model: BMW'
     assert has_content? 'The car has been created!'
+    assert true, @car.image.present?
+  end
+
+  test 'user adds a new car with too big image' do
+    sign_in
+    visit '/en/cars'
+    click_link 'New car'
+    fill_in 'Registration number', with: 'KR 1234A'
+    fill_in 'Model', with: 'BMW'
+    attach_file('Image', File.join(Rails.root, '/test/fixtures/test_fail.jpg'))
+    click_button 'Create Car'
+    assert has_content? 'Oooups! Something went wrong'
+    assert has_content? 'Image should be smaller than 600 KBs'
   end
 
   test 'user edits a car' do
@@ -50,10 +65,12 @@ class CarsTest < ActionDispatch::IntegrationTest
     visit '/en/cars'
     click_link 'Edit'
     fill_in_the_form
+    assert has_content? 'Remove image'
     click_button 'Update Car'
     assert has_content? 'Registration number: KR 1234A'
     assert has_content? 'Model: BMW'
     assert has_content? 'The car has been updated!'
+    assert true, @car.image.present?
   end
 
   test 'user removes a car' do

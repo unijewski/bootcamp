@@ -4,3 +4,4 @@ bmw:
   model: BMW 535i
   registration_number: DW 12345
   owner: steve
+  image_uid: '/test/fixtures/test_ok.png'

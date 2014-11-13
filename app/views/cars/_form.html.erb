@@ -21,8 +21,16 @@
   </p>
 
   <p>
-    <%= f.label :image %><br>
-    <%= f.file_field :image %>
+    <% if @car.image.present? %>
+      <%= f.label :image %><br>
+      <%= image_tag @car.image.thumb('400x200#').url if @car.image_stored? %><br/>
+      <%= f.file_field :image %>
+      <%= f.label :remove_image %>
+      <%= f.check_box :remove_image %>
+    <% else %>
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+    <% end %>
   </p>
 
   <p>

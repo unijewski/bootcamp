@@ -2,6 +2,6 @@
 <ul>
   <li><b>Registration number:</b> <%= @car.registration_number %></li>
   <li><b>Model:</b> <%= @car.model %></li>
-  <li><%= image_tag @car.image.thumb('400x200#').url if @car.image_stored? %></li>
+  <li><b>Image:</b> <%= image_tag @car.image.thumb('400x200#').url if @car.image_stored? %></li>
 </ul>
 <%= link_to 'Back to cars', cars_path %>
