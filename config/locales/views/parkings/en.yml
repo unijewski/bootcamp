@@ -25,3 +25,6 @@ en:
   back: Back
   zip_code: Zip code
   execute: Execute
+  will_paginate:
+    previous_label: Back
+    next_label: Next

@@ -1,18 +1,19 @@
-%h1= t :parkings
+%h1= t(:parkings)
 = render 'search'
 = link_to t(:new_parking), new_parking_path
 %br/
 %br/
+
 %table
   %tr
     %th
-      = t :city
+      = t(:city)
     %th
-      = t :places
+      = t(:places)
     %th
-      = t :hour_price
+      = t(:hour_price)
     %th
-      = t :day_price
+      = t(:day_price)
     %th
     %th
     %th
@@ -27,3 +28,6 @@
       %td= link_to t(:edit), edit_parking_path(parking)
       %td= link_to t(:remove), parking, method: :delete, data: { confirm: t(:confirmation) }
       %td= link_to t(:rent_a_place), new_parking_place_rent_path(parking)
+
+%br/
+= will_paginate @parkings, previous_label: t('will_paginate.previous_label'), next_label: t('will_paginate.next_label')

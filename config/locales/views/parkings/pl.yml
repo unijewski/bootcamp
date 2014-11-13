@@ -25,3 +25,6 @@ pl:
   back: Wróć
   zip_code: Kod pocztowy
   execute: Wykonaj
+  will_paginate:
+    previous_label: Wróć
+    next_label: Dalej

@@ -2,7 +2,7 @@ class ParkingsController < ApplicationController
   before_action :find_parking, only:[:edit, :update, :destroy]
 
   def index
-    @parkings = Parking.search(params)
+    @parkings = Parking.search(params).paginate(:page => params[:page], :per_page => 3)
   end
 
   def show
