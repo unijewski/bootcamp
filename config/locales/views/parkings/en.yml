@@ -7,6 +7,11 @@ en:
     hour_price_to: Hour price to
     private: Private
     public: Public
+  select:
+    indoor: Indoor
+    outdoor: Outdoor
+    private: Private
+    street: Street
   new_parking: New parking
   show: Show
   edit: Edit

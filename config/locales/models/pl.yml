@@ -13,3 +13,6 @@ pl:
           city: Miasto
           street: Ulica
           zip_code: Kod pocztowy
+  errors:
+    messages:
+      big_image: powinien być mniejszy niż 600 KB

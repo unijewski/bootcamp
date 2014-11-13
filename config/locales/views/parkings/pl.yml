@@ -7,6 +7,11 @@ pl:
     hour_price_to: Stawka godzinowa do
     private: Prywatne
     public: Publiczne
+  select:
+    indoor: Wewnątrz
+    outdoor: Na zewnątrz
+    private: Prywatny
+    street: Na ulicy
   new_parking: Nowy parking
   show: Pokaż
   edit: Edytuj

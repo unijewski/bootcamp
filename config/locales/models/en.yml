@@ -13,3 +13,6 @@ en:
           city: City
           street: Street
           zip_code: Zip code
+  errors:
+    messages:
+      big_image: should be smaller than 600 KBs
