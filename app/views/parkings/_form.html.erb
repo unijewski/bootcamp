@@ -17,12 +17,7 @@
 
   <p>
     <%= f.label :kind %><br>
-    <%= f.select :kind, options_for_select([
-      [ t('select.outdoor'), 'outdoor' ],
-      [ t('select.indoor'), 'indoor' ],
-      [ t('select.private'), 'private' ],
-      [ t('select.street'), 'street' ]
-    ]) %>
+    <%= f.select :kind, options_for_select(Parking::KIND_TYPES.map { |type| [t("select.#{type}"), type] }.to_a) %>
   </p>
 
   <p>
