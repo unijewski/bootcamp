@@ -1,7 +1,6 @@
 pl:
-  welcome: Witaj,
+  welcome: Witaj
   cars: Pojazdy
-  parkings: Parkingi
   place_rents: Miejsca parkingowe
   sign_in: Zaloguj się
   sign_up: Zarejestruj się

@@ -1,5 +1,4 @@
 en:
-  parkings: Parkings
   city: City
   places: Places
   hour_price: Hour price
@@ -22,7 +21,6 @@ en:
   street: Street
   owner: Owner
   back_to_parkings: Back to parkings
-  back: Back
   zip_code: Zip code
   execute: Execute
   will_paginate:

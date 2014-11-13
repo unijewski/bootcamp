@@ -1,5 +1,4 @@
 pl:
-  parkings: Parkingi
   city: Miasto
   places: Miejsc
   hour_price: Cena za godzinę
@@ -22,7 +21,6 @@ pl:
   street: Ulica
   owner: Właściciel
   back_to_parkings: Wróć do parkingów
-  back: Wróć
   zip_code: Kod pocztowy
   execute: Wykonaj
   will_paginate:
