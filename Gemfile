@@ -45,6 +45,8 @@ gem 'i18n'
 gem 'will_paginate', '~> 3.0'
 
 gem 'bootstrap-sass', '~> 3.3.1'
+
+gem 'dragonfly', '~> 1.0.7'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
