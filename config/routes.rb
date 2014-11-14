@@ -9,6 +9,8 @@ Rails.application.routes.draw do
     resources :place_rents, only: [:index, :show]
     resources :accounts
     root 'parkings#index'
+    get '/auth/:provider/callback', to: 'sessions#create'
+    get '/auth/failure', to: 'sessions#failure'
   end
 
   root 'parkings#index', as: nil
