@@ -13,6 +13,7 @@ class AccountsController < ApplicationController
 
     if @account.save
       sign_in @account
+      AccountMailer.welcome_email(@account).deliver
     else
       flash[:alert] = 'Oooups! Something went wrong'
       render 'new'
