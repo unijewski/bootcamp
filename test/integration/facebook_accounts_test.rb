@@ -1,12 +1,9 @@
 require 'test_helper'
 
 class FacebookAccountsTest < ActionDispatch::IntegrationTest
-  def setup
+  setup do
     Capybara.reset!
     OmniAuth.config.test_mode = true
-  end
-
-  def mock_auth
     OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
       provider: 'facebook',
       uid: '123545',
@@ -19,7 +16,6 @@ class FacebookAccountsTest < ActionDispatch::IntegrationTest
 
   test 'user signs in by facebook with proper data' do
     visit '/'
-    mock_auth
     click_link 'Sign in with Facebook'
     assert has_content? 'Welcome Steve Jobs'
   end
