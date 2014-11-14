@@ -17,7 +17,7 @@
 
   <p>
     <%= f.label :kind %><br>
-    <%= f.select :kind, options_for_select(Parking::KIND_TYPES.map { |type| [t("select.#{type}"), type] }.to_a) %>
+    <%= f.select :kind, options_for_select(Parking::KIND_TYPES.map { |type| [t("select.#{type}"), type] }) %>
   </p>
 
   <p>
