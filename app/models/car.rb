@@ -1,4 +1,7 @@
 class Car < ActiveRecord::Base
+  extend Dragonfly::Model
+  extend Dragonfly::Model::Validations
+
   belongs_to :owner, class_name: 'Person'
   has_many :place_rents
 
