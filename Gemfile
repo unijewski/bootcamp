@@ -48,6 +48,8 @@ gem 'bootstrap-sass', '~> 3.3.1'
 
 gem 'dragonfly', '~> 1.0.7'
 
+gem 'dotenv-rails', :groups => [:development, :test]
+
 gem 'omniauth-facebook'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

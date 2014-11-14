@@ -49,6 +49,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     dragonfly (1.0.7)
       addressable (~> 2.3)
       multi_json (~> 1.0)
@@ -176,6 +179,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.1)
   capybara
   coffee-rails (~> 4.0.0)
+  dotenv-rails
   dragonfly (~> 1.0.7)
   haml-rails
   i18n
