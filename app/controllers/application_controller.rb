@@ -46,7 +46,6 @@ class ApplicationController < ActionController::Base
   def sign_in(account)
     if account
       session[:id] = account.person.id
-      session[:account_type] = account_type
       redirect_back_or root_path
       flash[:notice] = 'Welcome!'
     else
