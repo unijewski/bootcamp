@@ -10,7 +10,6 @@ class FacebookAccount < ActiveRecord::Base
         first_name: auth_hash[:info][:first_name],
         last_name: auth_hash[:info][:last_name]
       )
-      account.save
     end
   end
 end
