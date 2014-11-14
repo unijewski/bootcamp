@@ -128,6 +128,9 @@ class WebPageTest < Minitest::Test
     @article2 = Article.new('title2', 'bodybodybody2', 'author')
     @web_page.articles << @article
     @web_page.articles << @article2
+
+    @article_first = @web_page.articles[0]
+    @article_second = @web_page.articles[1]
   end
 
   def test_new_without_anything_to_load
@@ -147,15 +150,14 @@ class WebPageTest < Minitest::Test
   end
 
   def test_best_articles
-    @web_page.articles[1].likes = 12
-    assert_equal @web_page.articles[1], @web_page.best_articles[0]
-    assert [@web_page.articles[1], @web_page.articles[0]] == @web_page.best_articles
+    @article_second.likes = 12
+    assert_equal @article_second, @web_page.best_articles[0]
+    assert_equal [@article_second, @article_first], @web_page.best_articles
   end
 
   def test_best_article
-    @web_page.articles[1].likes = 12
-    article1 = @web_page.articles[1]
-    assert_equal article1, @web_page.best_article
+    @article_second.likes = 12
+    assert_equal @article_second, @web_page.best_article
   end
 
   def test_best_article_exception_when_no_articles_can_be_found
@@ -166,15 +168,14 @@ class WebPageTest < Minitest::Test
   end
 
   def test_worst_articles
-    @web_page.articles[1].likes = 12
-    assert_equal @web_page.articles[0], @web_page.worst_articles[0]
-    assert_equal [@web_page.articles[0], @web_page.articles[1]], @web_page.worst_articles
+    @article_second.likes = 12
+    assert_equal @article_first, @web_page.worst_articles[0]
+    assert_equal [@article_first, @article_second], @web_page.worst_articles
   end
 
   def test_worst_article
-    @web_page.articles[1].likes = 12
-    article = @web_page.articles[0]
-    assert_equal article, @web_page.worst_article
+    @article_second.likes = 12
+    assert_equal @article_first, @web_page.worst_article
   end
 
   def test_worst_article_exception_when_no_articles_can_be_found
@@ -185,15 +186,14 @@ class WebPageTest < Minitest::Test
   end
 
   def test_most_controversial_articles
-    @web_page.articles[0].likes = 17
-    @web_page.articles[1].likes = 16
-    article =@web_page.articles[0]
-    assert_equal article, @web_page.most_controversial_articles[0]
+    @article_first.likes = 17
+    @article_second.likes = 16
+    assert_equal @article_first, @web_page.most_controversial_articles[0]
   end
 
   def test_votes
-    @web_page.articles[0].likes = 22
-    @web_page.articles[1].likes = 44
+    @article_first.likes = 22
+    @article_second.likes = 44
     assert_equal 6, @web_page.votes
   end
 
@@ -209,12 +209,12 @@ class WebPageTest < Minitest::Test
   end
 
   def test_best_author
-    @web_page.articles[1].likes = 12
-    assert_equal @web_page.articles[1].author, @web_page.best_author
+    @article_second.likes = 12
+    assert_equal @article_second.author, @web_page.best_author
   end
 
   def test_search
     query = 'body'
-    assert_equal [@web_page.articles[1]], @web_page.search(query)
+    assert_equal [@article_second], @web_page.search(query)
   end
 end
