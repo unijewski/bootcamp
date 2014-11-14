@@ -51,6 +51,8 @@ gem 'dragonfly', '~> 1.0.7'
 gem 'dotenv-rails', :groups => [:development, :test]
 
 gem 'omniauth-facebook'
+
+gem "letter_opener", :group => :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

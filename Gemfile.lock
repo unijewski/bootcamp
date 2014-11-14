@@ -78,6 +78,10 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     jwt (1.0.0)
+    launchy (2.4.3)
+      addressable (~> 2.3)
+    letter_opener (1.2.0)
+      launchy (~> 2.2)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     method_source (0.8.2)
@@ -185,6 +189,7 @@ DEPENDENCIES
   i18n
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener
   omniauth-facebook
   pg
   pry
