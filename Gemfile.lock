@@ -189,6 +189,7 @@ DEPENDENCIES
   i18n
   jbuilder (~> 2.0)
   jquery-rails
+  launchy
   letter_opener
   omniauth-facebook
   pg
