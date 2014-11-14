@@ -154,7 +154,8 @@ class WebPageTest < Minitest::Test
 
   def test_best_article
     @web_page.articles[1].likes = 12
-    assert_equal @web_page.articles[1], @web_page.best_article
+    article1 = @web_page.articles[1]
+    assert_equal article1, @web_page.best_article
   end
 
   def test_best_article_exception_when_no_articles_can_be_found
@@ -167,12 +168,13 @@ class WebPageTest < Minitest::Test
   def test_worst_articles
     @web_page.articles[1].likes = 12
     assert_equal @web_page.articles[0], @web_page.worst_articles[0]
-    assert [@web_page.articles[0], @web_page.articles[1]] == @web_page.worst_articles
+    assert_equal [@web_page.articles[0], @web_page.articles[1]], @web_page.worst_articles
   end
 
   def test_worst_article
     @web_page.articles[1].likes = 12
-    assert_equal @web_page.articles[0], @web_page.worst_article
+    article = @web_page.articles[0]
+    assert_equal article, @web_page.worst_article
   end
 
   def test_worst_article_exception_when_no_articles_can_be_found
@@ -185,7 +187,8 @@ class WebPageTest < Minitest::Test
   def test_most_controversial_articles
     @web_page.articles[0].likes = 17
     @web_page.articles[1].likes = 16
-    assert_equal @web_page.articles[0], @web_page.most_controversial_articles[0]
+    article =@web_page.articles[0]
+    assert_equal article, @web_page.most_controversial_articles[0]
   end
 
   def test_votes
