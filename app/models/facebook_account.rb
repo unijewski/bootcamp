@@ -1,5 +1,5 @@
 class FacebookAccount < ActiveRecord::Base
-  has_one :person
+  belongs_to :person
 
   validates :uid, :person, presence: true
 end
