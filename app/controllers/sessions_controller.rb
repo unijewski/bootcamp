@@ -3,11 +3,9 @@ class SessionsController < ApplicationController
     auth_hash = request.env['omniauth.auth']
 
     if auth_hash && auth_hash.include?(:uid)
-      facebook = FacebookAccount.find_or_create_for_facebook(auth_hash)
-      sign_in(facebook)
+      sign_in_with_facebook(auth_hash)
     else
-      account = Account.authenticate(params[:session][:email], params[:session][:password])
-      sign_in(account)
+      sign_in_by_default
     end
   end
 
@@ -18,5 +16,17 @@ class SessionsController < ApplicationController
 
   def failure
     redirect_to root_path, alert: 'Error!'
+  end
+
+  private
+
+  def sign_in_by_default
+    account = Account.authenticate(params[:session][:email], params[:session][:password])
+    sign_in(account)
+  end
+
+  def sign_in_with_facebook(auth_hash)
+    facebook = FacebookAccount.find_or_create_for_facebook(auth_hash)
+    sign_in(facebook)
   end
 end
